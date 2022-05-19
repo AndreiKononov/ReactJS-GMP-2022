@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './Components/App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -10,6 +10,14 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+const element = React.createElement(
+  'footer',
+  { className: 'fixed-bottom start-50' },
+  React.createElement('h1', null, 'Footer')
+);
+
+ReactDOM.render(element, document.getElementById('footer-container'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
