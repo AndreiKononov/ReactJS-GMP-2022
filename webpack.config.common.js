@@ -1,13 +1,10 @@
 const path = require('path');
-const argv = require('yargs').argv;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const isDevelopment = argv.mode === 'development';
-const isProduction = !isDevelopment;
-
 module.exports = {
+  mode: 'none',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
@@ -18,26 +15,6 @@ module.exports = {
       {
         test: /\.html$/,
         use: 'html-loader'
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  isProduction ? require('cssnano') : () => {
-                  },
-                ]
-              }
-            }
-          },
-          'sass-loader'
-        ]
       },
       {
         test: /\.js$/,
