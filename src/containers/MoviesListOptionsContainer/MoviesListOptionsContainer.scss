@@ -1,0 +1,19 @@
+@import 'src/scss/variables';
+
+.options-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  &::after {
+    content: '';
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: 3px;
+    background-color: $color_charcoal;
+    box-shadow: 0 2px 3px rgba($color_black, 0.5);
+  }
+}
