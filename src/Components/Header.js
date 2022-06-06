@@ -1,5 +1,5 @@
 import React from 'react';
-import header from '../header.png';
+import header from '../img/header.png';
 import SearchForm from './SearchForm';
 
 class Header extends React.Component {
