@@ -2,13 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import './Dropdown.scss';
 
-interface DropdownConfig {
+interface IDropdownProps {
   items: Array<{ id: number; title: string }>;
   handleSelect: (id: number) => void;
   handleClose: () => void;
 }
 
-export function Dropdown({ items, handleSelect, handleClose }: DropdownConfig) {
+export function Dropdown({ items, handleSelect, handleClose }: IDropdownProps) {
   return (
     <div className="dropdown">
       <ul>
