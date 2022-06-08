@@ -1,0 +1,75 @@
+@import 'src/scss/variables';
+
+.movies-list-card {
+  position: relative;
+  text-align: left;
+
+  .movies-list-card-image {
+    max-width: 100%;
+    margin-bottom: 22px;
+    cursor: pointer;
+  }
+
+  .movies-list-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: rgba($color_white, 0.7);
+    margin-bottom: 8px;
+
+    .movies-list-card-title {
+      cursor: pointer;
+    }
+
+    .movies-list-card-year {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: rgba($color_white, 0.7);
+      padding: 4px 8px;
+      border: 1px solid $color_matterhorn;
+      border-radius: 4px;
+    }
+  }
+
+
+  .movies-list-card-genres {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba($color_white, 0.5);
+  }
+
+  .context-menu-btn {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    height: 36px;
+    width: 36px;
+    border-radius: 18px;
+    background-color: $color_blackcurrant;
+    color: $color_white;
+    border: none;
+
+    &:hover {
+      background-color: lighten($color_blackcurrant, 5%);
+    }
+  }
+
+  .movies-list-card-dropdown-wrapper {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+  }
+
+  &:hover {
+    .context-menu-btn {
+      display: block;
+    }
+  }
+}

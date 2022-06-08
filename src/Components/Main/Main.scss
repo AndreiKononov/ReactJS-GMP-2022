@@ -1,0 +1,8 @@
+@import 'src/scss/variables';
+
+.main {
+  margin-top: 10px;
+  padding: 0 #{$layout-side-padding};
+  background-color: $color_nero;
+  padding-bottom: 73px;
+}

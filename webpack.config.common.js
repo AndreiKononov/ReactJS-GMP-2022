@@ -5,13 +5,21 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'none',
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'index_bundle.js'
   },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js', '.jsx', ],
+  },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.html$/,
         use: 'html-loader'
@@ -22,16 +30,6 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: { name: '.img/[name].[ext]' }
-          },
-          'image-webpack-loader'
-        ]
       }
     ]
   },

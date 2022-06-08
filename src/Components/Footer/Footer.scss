@@ -1,0 +1,9 @@
+@import 'src/scss/variables';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  background-color: $color_charcoal;
+}
