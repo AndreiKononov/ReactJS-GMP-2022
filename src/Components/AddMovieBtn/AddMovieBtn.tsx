@@ -1,7 +1,13 @@
 import './AddMovieBtn.scss';
 
-export function AddMovieBtn() {
-  return (
-    <button className="add-movie-btn">+ Add Movie</button>
-  );
+interface AddMovieBtnProps {
+    handleClick: () => void;
+}
+
+export function AddMovieBtn({ handleClick }: AddMovieBtnProps) {
+    return (
+        <button className="add-movie-btn" onClick={handleClick}>
+            + Add Movie
+        </button>
+    );
 }
