@@ -4,7 +4,7 @@ interface DeleteMovieConfirmProps {
   handleConfirm: () => void;
 }
 
-export const DeleteMovieConfirm = ({ handleConfirm }: DeleteMovieConfirmProps) => {
+export const DeleteMovieConfirm = ({handleConfirm}: DeleteMovieConfirmProps) => {
   return (
     <div className="confirm-modal">
       <p className="confirm-text">Are you sure you want to delete this movie?</p>

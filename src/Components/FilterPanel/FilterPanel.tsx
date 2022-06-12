@@ -12,8 +12,12 @@ export function GenreTogglePanel({genres, selectedGenre, handleSelect}: GenreTog
     <div className="genre-panel">
       {genres.map((genre: string) => {
         return (
-          <GenreToggleButton key={genre} isSelected={genre === selectedGenre} genreTitle={genre}
-                             handleSelect={() => handleSelect(genre)}/>
+          <GenreToggleButton
+            key={genre}
+            isSelected={genre === selectedGenre}
+            genreTitle={genre}
+            handleSelect={() => handleSelect(genre)}
+          />
         );
       })}
     </div>

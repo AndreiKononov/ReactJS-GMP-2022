@@ -1,7 +1,6 @@
 import { BaseSyntheticEvent, useState } from 'react';
 import { genres } from '../../mocks/genres';
 import { Movie } from '../../models/Movie';
-import { SelectValue } from '../../models/SelectValue';
 import { getSelectValuesFromGenres } from '../../utils/getSelectValuesFromGenres';
 import { FormField } from '../FormField/FormField';
 import { FormSelect } from '../FormSelect/FormSelect';

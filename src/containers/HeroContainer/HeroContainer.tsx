@@ -7,7 +7,6 @@ import { Logo } from '../../components/Logo/Logo';
 import { Modal } from '../../components/Modal/Modal';
 import { MovieCardSelected } from '../../components/MovieCardSelected/MovieCardSelected';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { movies } from '../../mocks/movies';
 import { Movie } from '../../models/Movie';
 
 export function HeroContainer() {
@@ -37,5 +36,6 @@ export function HeroContainer() {
   ) : (
     <MovieCardSelected movie={selectedMovie} />
   );
+
   return heroElement;
 }
