@@ -1,25 +1,19 @@
-import React from "react";
-import { GenreToggleButton } from '../GenreToggleButton/GenreToggleButton';
-import { Genre } from '../../models/Genre';
 import './FilterPanel.scss';
+import { GenreToggleButton } from '../GenreToggleButton/GenreToggleButton';
 
 interface GenreToggleProps {
-  genres: Genre[];
-  selectedGenreId: string;
-  handleSelect: (value: React.SetStateAction<Genre>) => void;
+  genres: string[];
+  selectedGenre: string;
+  handleSelect: (value: React.SetStateAction<string>) => void;
 }
 
-export function GenreTogglePanel({ genres, selectedGenreId, handleSelect }: GenreToggleProps) {
+export function GenreTogglePanel({genres, selectedGenre, handleSelect}: GenreToggleProps) {
   return (
     <div className="genre-panel">
-      {genres.map(({ id, title }: Genre) => {
+      {genres.map((genre: string) => {
         return (
-          <GenreToggleButton
-            key={id}
-            isSelected={id === selectedGenreId}
-            genreTitle={title}
-            handleSelect={() => handleSelect({ title, id })}
-          />
+          <GenreToggleButton key={genre} isSelected={genre === selectedGenre} genreTitle={genre}
+                             handleSelect={() => handleSelect(genre)}/>
         );
       })}
     </div>
