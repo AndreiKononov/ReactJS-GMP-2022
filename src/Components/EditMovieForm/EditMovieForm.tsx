@@ -11,20 +11,22 @@ interface EditMovieProps {
   onSubmit: (formValue: Partial<Movie>) => void;
 }
 
+function setInitialFormValue(movie: Movie | null): Partial<Movie> {
+  return {
+  title: movie?.title || '',
+  release_date: movie?.release_date || '',
+  poster_path: movie?.poster_path || '',
+  vote_average: movie?.vote_average,
+  runtime: movie?.runtime,
+  overview: movie?.overview || '',
+  genres: movie?.genres || [],
+  };
+};
+
 const genreSelectOptions = getSelectValuesFromGenres(genres);
 
 export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
-  const initialFormValue: Partial<Movie> = {
-    title: movie?.title || '',
-    release_date: movie?.release_date || '',
-    poster_path: movie?.poster_path || '',
-    vote_average: movie?.vote_average,
-    runtime: movie?.runtime,
-    overview: movie?.overview || '',
-    genres: movie?.genres || [],
-  };
-
-  const [formValue, setFormValue] = useState<Partial<Movie>>(initialFormValue);
+  const [formValue, setFormValue] = useState<Partial<Movie>>(setInitialFormValue(movie));
 
   function onChange(event: BaseSyntheticEvent): void {
     setFormValue({
@@ -41,7 +43,7 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
   }
 
   function resetForm(): void {
-    setFormValue(initialFormValue);
+    setFormValue(setInitialFormValue(movie));
   }
 
   function onFormSubmit(event: BaseSyntheticEvent): void {
