@@ -1,0 +1,40 @@
+@import 'src/scss/variables';
+
+.form-input {
+  width: 100%;
+  background: rgba($color_matterhorn, 0.8);
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: $color_white;
+  padding: 16px 19px;
+  border: none;
+
+  &::placeholder {
+    color: rgba($color_white, 0.3);
+  }
+
+  &[type="date"] {
+    position: relative;
+
+    &::-webkit-calendar-picker-indicator {
+      background: none;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    &::before {
+      display: block;
+      background: none;
+      font-family: $font_awesome;
+      content: '\f073';
+      width: 15px;
+      height: 20px;
+      position: absolute;
+      top: 17px;
+      right: 24px;
+      color: $color_wild_watermelon;
+    }
+  }
+}

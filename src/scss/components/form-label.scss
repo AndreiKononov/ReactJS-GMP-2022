@@ -1,0 +1,13 @@
+@import 'src/scss/variables';
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba($color_wild_watermelon, 0.8);
+  margin-bottom: 13px;
+}

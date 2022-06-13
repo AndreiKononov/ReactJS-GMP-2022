@@ -1,8 +1,12 @@
 @import 'src/scss/variables';
+@import 'src/scss/components/button';
+@import 'src/scss/components/form-label';
+@import 'src/scss/components/form-input';
+@import 'src/scss/components/form-textarea';
 
 body {
   margin: 0;
-  font-family: 'Montserrat', 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: $font_primary, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,11 +14,20 @@ body {
   background-color: $color_matterhorn;
 
   * {
-    font-family: 'Montserrat', 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: $font_primary, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     box-sizing: border-box;
   }
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
 }
 
 ul {
@@ -27,6 +40,11 @@ ul {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
   margin: 0;
   padding: 0;
 }
