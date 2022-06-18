@@ -12,6 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $color_matterhorn;
+  color: $color_white;
 
   * {
     font-family: $font_primary, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -7,7 +7,7 @@ import './SortPanel.scss';
 interface SortPanelProps {
   sortOptions: SelectValue[];
   sortByValue: SelectValue;
-  handleSelect: (value: React.SetStateAction<SelectValue>) => void;
+  handleSelect: (value: SelectValue) => void;
 }
 
 const customStyles = sortSelectStyles;
@@ -20,7 +20,7 @@ export function SortPanel({ sortOptions, sortByValue, handleSelect }: SortPanelP
         value={sortByValue}
         options={sortOptions}
         styles={customStyles}
-        onChange={(value) => handleSelect(value as React.SetStateAction<SelectValue>)}
+        onChange={(value) => handleSelect(value as SelectValue)}
       />
     </div>
   );

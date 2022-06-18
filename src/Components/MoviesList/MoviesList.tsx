@@ -1,3 +1,4 @@
+import React from 'react';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
 import { MoviesListCard } from '../MovieListCard/MovieListCard';
 import { Movie } from '../../models/Movie';
@@ -7,7 +8,7 @@ interface MoviesListProps {
   movies: Movie[];
 }
 
-export function MoviesList({ movies }: MoviesListProps) {
+export function MoviesListComponent({ movies }: MoviesListProps) {
   return (
     <ul className="movies-list">
       {movies.map((movie: Movie) => (
@@ -20,3 +21,5 @@ export function MoviesList({ movies }: MoviesListProps) {
     </ul>
   );
 }
+
+export const MoviesList = React.memo(MoviesListComponent);

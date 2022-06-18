@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { SelectedMovieContext } from '../../App';
 import { AddMovieBtn } from '../../components/AddMovieBtn/AddMovieBtn';
 import { EditMovieForm } from '../../components/EditMovieForm/EditMovieForm';
 import { Header } from '../../components/Header/Header';
@@ -10,7 +11,7 @@ import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { Movie } from '../../models/Movie';
 
 export function HeroContainer() {
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const { selectedMovie } = useContext(SelectedMovieContext);
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 
