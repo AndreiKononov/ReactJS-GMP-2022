@@ -29,8 +29,8 @@ export function App() {
   return (
     <div className="App">
       <SelectedMovieContext.Provider value={selectedMovieContextValue}>
-        <HeroContainer />
         <FetchedMoviesContext.Provider value={fetchedMoviesContextValue}>
+          <HeroContainer />
           <Main>
             <MoviesListOptionsContainer />
             <MoviesListContainer />
