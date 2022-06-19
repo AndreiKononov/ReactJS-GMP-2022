@@ -4,7 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '../Logo/Logo';
 import { transformDuration } from '../../utils/transformDuration';
 import { Movie } from '../../models/Movie';
-import { SelectedMovieContext } from '../../App';
+import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import './MovieCardSelected.scss';

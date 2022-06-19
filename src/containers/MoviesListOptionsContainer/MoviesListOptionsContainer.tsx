@@ -1,5 +1,5 @@
 import { useContext, useMemo, useState } from 'react';
-import { FetchedMoviesContext } from '../../App';
+import { FetchedMoviesContext } from '../../contexts/FetchedMoviesContext';
 import { GenreTogglePanel as FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { MoviesFound } from '../../components/MoviesFound/MoviesFound';
 import { SortPanel } from '../../components/SortPanel/SortPanel';

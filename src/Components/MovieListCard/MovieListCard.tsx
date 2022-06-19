@@ -6,7 +6,7 @@ import { Movie } from '../../models/Movie';
 import { Modal } from '../Modal/Modal';
 import { DeleteMovieConfirm } from '../DeleteMovieConfirm/DeleteMovieConfirm';
 import { EditMovieForm } from '../EditMovieForm/EditMovieForm';
-import { SelectedMovieContext } from '../../App';
+import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import './MovieListCard.scss';
@@ -59,8 +59,8 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
     console.log(formValue);
   }, []);
 
-  const closeEditMovieModal = useCallback(() => setMovieToEdit(null), []);
-  const closeDeleteMovieModal = useCallback(() => setMovieToDelete(null), []);
+  const closeEditMovieModal = () => setMovieToEdit(null);
+  const closeDeleteMovieModal = () => setMovieToDelete(null);
 
   const memoizedYear = useMemo(() => getYear(release_date), [release_date]);
   const memoizedGenres = useMemo(() => joinGenres(genres), [genres]);

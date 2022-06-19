@@ -1,5 +1,5 @@
 import React, { useContext, useId, useState } from 'react';
-import { FetchedMoviesContext } from '../../App';
+import { FetchedMoviesContext } from '../../contexts/FetchedMoviesContext';
 import './SearchForm.scss';
 
 export function SearchForm() {

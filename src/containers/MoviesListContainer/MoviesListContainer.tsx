@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { FetchedMoviesContext } from '../../App';
+import { FetchedMoviesContext } from '../../contexts/FetchedMoviesContext';
 import { ErrorBoundary } from '../../components/ErrorBoundary/ErrorBoundary';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
 
