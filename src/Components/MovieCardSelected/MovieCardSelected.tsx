@@ -1,27 +1,22 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { Dispatch, SetStateAction, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '../Logo/Logo';
 import { transformDuration } from '../../utils/transformDuration';
 import { Movie } from '../../models/Movie';
-import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import './MovieCardSelected.scss';
 
 interface MovieCardSelectedProps {
   movie: Movie;
+  setSelectedMovie: Dispatch<SetStateAction<Movie | null>>
 }
 
-function MovieCardSelectedComponent({ movie }: MovieCardSelectedProps) {
+function MovieCardSelectedComponent({ movie, setSelectedMovie }: MovieCardSelectedProps) {
   const { title, poster_path, vote_average, genres, release_date, runtime, overview } = movie;
-  const { setSelectedMovie } = useContext(SelectedMovieContext);
 
-  const handleGoToSearch = useCallback(() => setSelectedMovie(null), [setSelectedMovie]);
-
-  const memoizedYear = useMemo(() => getYear(release_date), [release_date]);
-  const memoizedGenres = useMemo(() => joinGenres(genres), [genres]);
-  const memoizedDuration = useMemo(() => transformDuration(runtime), [runtime]);
+  const handleGoToSearch = useCallback(() => setSelectedMovie(null), []);
 
   return (
     <div className="movie-card-selected">
@@ -39,11 +34,11 @@ function MovieCardSelectedComponent({ movie }: MovieCardSelectedProps) {
             <span className="movie-card-selected-rating">{vote_average}</span>
           </div>
           <div className="movie-card-selected-genres">
-            <span>{memoizedGenres}</span>
+            <span>{joinGenres(genres)}</span>
           </div>
           <div className="movie-card-selected-info">
-            <span>{memoizedYear}</span>
-            <span>{memoizedDuration}</span>
+            <span>{getYear(release_date)}</span>
+            <span>{transformDuration(runtime)}</span>
           </div>
           <div className="movie-card-selected-overview">{overview}</div>
         </div>

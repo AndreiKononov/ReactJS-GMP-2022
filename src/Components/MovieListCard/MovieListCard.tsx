@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from '../Dropdown/Dropdown';
@@ -62,9 +62,6 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   const closeEditMovieModal = () => setMovieToEdit(null);
   const closeDeleteMovieModal = () => setMovieToDelete(null);
 
-  const memoizedYear = useMemo(() => getYear(release_date), [release_date]);
-  const memoizedGenres = useMemo(() => joinGenres(genres), [genres]);
-
   const deleteMovieModal = movieToDelete ? (
     <Modal title="Delete movie" handleClose={closeDeleteMovieModal}>
       <DeleteMovieConfirm handleConfirm={handleMovieDelete} />
@@ -84,10 +81,10 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
         <span className="movies-list-card-title" onClick={handleMovieSelect}>
           {title}
         </span>
-        <span className="movies-list-card-year">{memoizedYear}</span>
+        <span className="movies-list-card-year">{getYear(release_date)}</span>
       </div>
       <div className="movies-list-card-genres">
-        <span>{memoizedGenres}</span>
+        <span>{joinGenres(genres)}</span>
       </div>
       <button onClick={() => setIsContextMenuOpen(true)} className="context-menu-btn">
         <FontAwesomeIcon icon={faEllipsisVertical} />

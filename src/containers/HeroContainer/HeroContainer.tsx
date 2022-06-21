@@ -11,7 +11,7 @@ import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { Movie } from '../../models/Movie';
 
 export function HeroContainer() {
-  const { selectedMovie } = useContext(SelectedMovieContext);
+  const { selectedMovie, setSelectedMovie } = useContext(SelectedMovieContext);
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 
@@ -35,7 +35,7 @@ export function HeroContainer() {
       {modal}
     </Hero>
   ) : (
-    <MovieCardSelected movie={selectedMovie} />
+    <MovieCardSelected movie={selectedMovie} setSelectedMovie={setSelectedMovie} />
   );
 
   return heroElement;
