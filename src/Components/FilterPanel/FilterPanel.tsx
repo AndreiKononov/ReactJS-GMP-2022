@@ -4,7 +4,7 @@ import { GenreToggleButton } from '../GenreToggleButton/GenreToggleButton';
 interface GenreToggleProps {
   genres: string[];
   selectedGenre: string;
-  handleSelect: (value: React.SetStateAction<string>) => void;
+  handleSelect: (value: string) => void;
 }
 
 export function GenreTogglePanel({genres, selectedGenre, handleSelect}: GenreToggleProps) {

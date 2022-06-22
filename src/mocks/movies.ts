@@ -30,7 +30,7 @@ export const movies: Movie[] = [
       'Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.',
     budget: 200000000,
     revenue: 1325937250,
-    genres: 'Fantasy' as any, // to trigger an error for ErrorBoundary for MovieListCard
+    genres: ['Action'], // to trigger an error for ErrorBoundary for MovieListCard remove array
     runtime: 152,
   },
   {

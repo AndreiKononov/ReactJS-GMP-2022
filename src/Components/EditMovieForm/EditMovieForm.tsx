@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, useState } from 'react';
+import { BaseSyntheticEvent, useId, useState } from 'react';
 import { genres } from '../../mocks/genres';
 import { Movie } from '../../models/Movie';
 import { getSelectValuesFromGenres } from '../../utils/getSelectValuesFromGenres';
@@ -21,7 +21,7 @@ function setInitialFormValue(movie: Movie | null): Partial<Movie> {
   overview: movie?.overview || '',
   genres: movie?.genres || [],
   };
-};
+}
 
 const genreSelectOptions = getSelectValuesFromGenres(genres);
 
@@ -51,12 +51,17 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
     onSubmit(formValue);
   }
 
+  function getIdFor(fieldName: string): string {
+    return `${inputIdPrefix}_${fieldName}`;
+  }
+
+  const inputIdPrefix = useId();
+
   return (
     <form className="edit-movie-form" onSubmit={onFormSubmit}>
       <div className="form-fields">
-        <FormField labelTitle="Title: " id="title">
+        <FormField labelTitle="Title:">
           <input
-            id="title"
             type="text"
             name="title"
             className="form-input"
@@ -66,9 +71,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Release date:" id="release_date">
+        <FormField labelTitle="Release date:">
           <input
-            id="release_date"
             type="date"
             name="release_date"
             className="form-input"
@@ -78,9 +82,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Poster Url:" id="poster_path">
+        <FormField labelTitle="Poster Url:">
           <input
-            id="poster_path"
             type="url"
             name="poster_path"
             className="form-input"
@@ -90,9 +93,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Rating:" id="vote_average">
+        <FormField labelTitle="Rating:">
           <input
-            id="vote_average"
             type="number"
             name="vote_average"
             className="form-input"
@@ -102,8 +104,9 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Genre:" id="genres">
+        <FormField labelTitle="Genre:">
           <FormSelect
+            inputId={getIdFor('genres')}
             value={getSelectValuesFromGenres(formValue.genres as string[])}
             isMulti
             options={genreSelectOptions}
@@ -111,9 +114,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Runtime:" id="runtime">
+        <FormField labelTitle="Runtime:">
           <input
-            id="runtime"
             type="number"
             name="runtime"
             className="form-input"
@@ -123,9 +125,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Runtime:" id="overview">
+        <FormField labelTitle="Overview:">
           <textarea
-            id="overview"
             name="overview"
             className="form-textarea"
             placeholder="Movie description"

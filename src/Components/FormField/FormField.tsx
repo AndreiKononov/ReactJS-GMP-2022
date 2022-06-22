@@ -2,17 +2,16 @@ import { PropsWithChildren } from 'react';
 
 interface FormFieldProps {
   labelTitle: string;
-  id: string;
 }
 
-export function FormField({ labelTitle, id, children }: PropsWithChildren<FormFieldProps>) {
+export function FormField({ labelTitle, children }: PropsWithChildren<FormFieldProps>) {
   return (
     <div className="form-field">
-      <label className="form-label" htmlFor={id}>
+      <label className="form-label" >
         {labelTitle}
+        {children}
       </label>
 
-      {children}
     </div>
   );
 }

@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useId, useState } from 'react';
+import { FetchedMoviesContext } from '../../contexts/FetchedMoviesContext';
 import './SearchForm.scss';
 
 export function SearchForm() {
   const [searchValue, setSearchValue] = useState('');
+  const [{ queryParams: currentQueryParams }, setQueryParams] = useContext(FetchedMoviesContext);
+  const inputIdPrefix = useId();
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert('SearchValue: ' + searchValue);
-  }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setQueryParams({
+      ...currentQueryParams,
+      searchValue,
+    });
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
-  }
+  };
 
   return (
     <div className="searchForm-wrapper">
@@ -19,6 +26,7 @@ export function SearchForm() {
 
       <form className="searchForm" onSubmit={handleSubmit}>
         <input
+          id={`${inputIdPrefix}_searchInput`}
           className="searchForm-input form-input"
           type="text"
           value={searchValue}

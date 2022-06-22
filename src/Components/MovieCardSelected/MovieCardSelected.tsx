@@ -1,42 +1,33 @@
+import React, { Dispatch, SetStateAction, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '../Logo/Logo';
 import { transformDuration } from '../../utils/transformDuration';
 import { Movie } from '../../models/Movie';
+import { getYear } from '../../utils/getYearFromDate';
+import { joinGenres } from '../../utils/joinGenresWithComma';
 import './MovieCardSelected.scss';
 
 interface MovieCardSelectedProps {
   movie: Movie;
+  setSelectedMovie: Dispatch<SetStateAction<Movie | null>>
 }
 
-export function MovieCardSelected({ movie }: MovieCardSelectedProps) {
-  function handleGoToSearch() {
-    console.log('go to search');
-  }
-
-  function getYear(releaseDate: string): string {
-    return releaseDate.slice(0, 4);
-  }
-
-  function joinGenres(genres: string[]): string {
-    return genres.join(', ');
-  }
-
+function MovieCardSelectedComponent({ movie, setSelectedMovie }: MovieCardSelectedProps) {
   const { title, poster_path, vote_average, genres, release_date, runtime, overview } = movie;
+
+  const handleGoToSearch = useCallback(() => setSelectedMovie(null), []);
 
   return (
     <div className="movie-card-selected">
       <div className="movie-card-selected-header">
         <Logo />
-
         <button onClick={handleGoToSearch} className="movie-card-selected-search-btn">
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </div>
-
       <div className="movie-card-selected-body">
         <img className="movie-card-selected-image" alt={`${title} poster`} src={poster_path} />
-
         <div className="movie-card-selected-content">
           <div className="movie-card-selected-content-header">
             <span className="movie-card-selected-title">{title}</span>
@@ -55,3 +46,5 @@ export function MovieCardSelected({ movie }: MovieCardSelectedProps) {
     </div>
   );
 }
+
+export const MovieCardSelected = React.memo(MovieCardSelectedComponent);

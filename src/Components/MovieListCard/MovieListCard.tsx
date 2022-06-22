@@ -1,11 +1,14 @@
+import React, { useCallback, useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from '../Dropdown/Dropdown';
-import { useState } from 'react';
 import { Movie } from '../../models/Movie';
 import { Modal } from '../Modal/Modal';
 import { DeleteMovieConfirm } from '../DeleteMovieConfirm/DeleteMovieConfirm';
 import { EditMovieForm } from '../EditMovieForm/EditMovieForm';
+import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
+import { getYear } from '../../utils/getYearFromDate';
+import { joinGenres } from '../../utils/joinGenresWithComma';
 import './MovieListCard.scss';
 
 
@@ -24,44 +27,50 @@ const dropdownItems = [
   },
 ];
 
-export function MoviesListCard({ movie }: MoviesListCardProps) {
+export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   const { title, poster_path, release_date, genres } = movie;
   const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
-  const [movieToDelete, setMovieToDelete] = useState<Movie | null>(null);
-  const [movieToEdit, setMovieToEdit] = useState<Movie | null>(null);
+  const [movieToDelete, setMovieToDelete] = useState(false);
+  const [movieToEdit, setMovieToEdit] = useState(false);
 
-  function handleEditClicked() {
+  const { setSelectedMovie } = useContext(SelectedMovieContext);
+
+  const handleEditClicked = useCallback(() => {
     setIsContextMenuOpen(false);
-    setMovieToEdit(movie);
-  }
+    setMovieToEdit(true);
+  }, []);
 
-  function handleDeleteClicked() {
+  const handleDeleteClicked = useCallback(() => {
     setIsContextMenuOpen(false);
-    setMovieToDelete(movie);
-  }
+    setMovieToDelete(true);
+  }, []);
 
-  function handleMovieSelect() {
-    console.log('movie selected');
-  }
+  const handleMovieSelect = useCallback(() => {
+    setSelectedMovie(movie);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [movie, setSelectedMovie]);
 
-  function handleMovieDelete() {
-    setMovieToDelete(null);
-    alert('Delete movie: ' + movieToDelete!.id);
-  }
+  const handleMovieDelete = useCallback(() => {
+    alert('Delete movie');
+    setMovieToDelete(true);
+  }, []);
 
-  function handleMovieEdit(formValue: Partial<Movie>) {
+  const handleMovieEdit = useCallback((formValue: Partial<Movie>) => {
     console.log(formValue);
-  }
+  }, []);
+
+  const closeEditMovieModal = () => setMovieToEdit(false);
+  const closeDeleteMovieModal = () => setMovieToDelete(false);
 
   const deleteMovieModal = movieToDelete ? (
-    <Modal title="Delete movie" handleClose={() => setMovieToDelete(null)}>
+    <Modal title="Delete movie" handleClose={closeDeleteMovieModal}>
       <DeleteMovieConfirm handleConfirm={handleMovieDelete} />
     </Modal>
   ) : null;
 
   const editMovieModal = movieToEdit ? (
-    <Modal title="Add Movie" handleClose={() => setMovieToEdit(null)}>
-      <EditMovieForm movie={movieToEdit} onSubmit={handleMovieEdit} />
+    <Modal title="Add Movie" handleClose={closeEditMovieModal}>
+      <EditMovieForm movie={movie} onSubmit={handleMovieEdit} />
     </Modal>
   ) : null;
 
@@ -72,10 +81,10 @@ export function MoviesListCard({ movie }: MoviesListCardProps) {
         <span className="movies-list-card-title" onClick={handleMovieSelect}>
           {title}
         </span>
-        <span className="movies-list-card-year">{release_date.slice(0, 4)}</span>
+        <span className="movies-list-card-year">{getYear(release_date)}</span>
       </div>
       <div className="movies-list-card-genres">
-        <span>{genres.join(', ')}</span>
+        <span>{joinGenres(genres)}</span>
       </div>
       <button onClick={() => setIsContextMenuOpen(true)} className="context-menu-btn">
         <FontAwesomeIcon icon={faEllipsisVertical} />
@@ -89,9 +98,10 @@ export function MoviesListCard({ movie }: MoviesListCardProps) {
           />
         )}
       </div>
-
       {deleteMovieModal}
       {editMovieModal}
     </div>
   );
 }
+
+export const MoviesListCard = React.memo(MoviesListCardComponent);
