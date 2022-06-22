@@ -30,20 +30,20 @@ const dropdownItems = [
 export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   const { title, poster_path, release_date, genres } = movie;
   const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
-  const [movieToDelete, setMovieToDelete] = useState<Movie | null>(null);
-  const [movieToEdit, setMovieToEdit] = useState<Movie | null>(null);
+  const [movieToDelete, setMovieToDelete] = useState(false);
+  const [movieToEdit, setMovieToEdit] = useState(false);
 
   const { setSelectedMovie } = useContext(SelectedMovieContext);
 
   const handleEditClicked = useCallback(() => {
     setIsContextMenuOpen(false);
-    setMovieToEdit(movie);
-  }, [movie]);
+    setMovieToEdit(true);
+  }, []);
 
   const handleDeleteClicked = useCallback(() => {
     setIsContextMenuOpen(false);
-    setMovieToDelete(movie);
-  }, [movie]);
+    setMovieToDelete(true);
+  }, []);
 
   const handleMovieSelect = useCallback(() => {
     setSelectedMovie(movie);
@@ -51,16 +51,16 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   }, [movie, setSelectedMovie]);
 
   const handleMovieDelete = useCallback(() => {
-    alert('Delete movie: ' + movieToDelete!.id);
-    setMovieToDelete(null);
-  }, [movieToDelete]);
+    alert('Delete movie');
+    setMovieToDelete(true);
+  }, []);
 
   const handleMovieEdit = useCallback((formValue: Partial<Movie>) => {
     console.log(formValue);
   }, []);
 
-  const closeEditMovieModal = () => setMovieToEdit(null);
-  const closeDeleteMovieModal = () => setMovieToDelete(null);
+  const closeEditMovieModal = () => setMovieToEdit(false);
+  const closeDeleteMovieModal = () => setMovieToDelete(false);
 
   const deleteMovieModal = movieToDelete ? (
     <Modal title="Delete movie" handleClose={closeDeleteMovieModal}>
@@ -70,7 +70,7 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
 
   const editMovieModal = movieToEdit ? (
     <Modal title="Add Movie" handleClose={closeEditMovieModal}>
-      <EditMovieForm movie={movieToEdit} onSubmit={handleMovieEdit} />
+      <EditMovieForm movie={movie} onSubmit={handleMovieEdit} />
     </Modal>
   ) : null;
 

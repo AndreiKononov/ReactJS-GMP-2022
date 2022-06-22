@@ -60,9 +60,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
   return (
     <form className="edit-movie-form" onSubmit={onFormSubmit}>
       <div className="form-fields">
-        <FormField labelTitle="Title: " id={getIdFor('title')}>
+        <FormField labelTitle="Title:">
           <input
-            id={getIdFor('title')}
             type="text"
             name="title"
             className="form-input"
@@ -72,9 +71,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Release date:" id={getIdFor('release_date')}>
+        <FormField labelTitle="Release date:">
           <input
-            id={getIdFor('release_date')}
             type="date"
             name="release_date"
             className="form-input"
@@ -84,9 +82,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Poster Url:" id={getIdFor('poster_path')}>
+        <FormField labelTitle="Poster Url:">
           <input
-            id={getIdFor('poster_path')}
             type="url"
             name="poster_path"
             className="form-input"
@@ -96,9 +93,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Rating:" id={getIdFor('vote_average')}>
+        <FormField labelTitle="Rating:">
           <input
-            id={getIdFor('vote_average')}
             type="number"
             name="vote_average"
             className="form-input"
@@ -108,7 +104,7 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Genre:" id={getIdFor('genres')}>
+        <FormField labelTitle="Genre:">
           <FormSelect
             inputId={getIdFor('genres')}
             value={getSelectValuesFromGenres(formValue.genres as string[])}
@@ -118,9 +114,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Runtime:" id={getIdFor('runtime')}>
+        <FormField labelTitle="Runtime:">
           <input
-            id={getIdFor('runtime')}
             type="number"
             name="runtime"
             className="form-input"
@@ -130,9 +125,8 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
           />
         </FormField>
 
-        <FormField labelTitle="Overview:" id={getIdFor('overview')}>
+        <FormField labelTitle="Overview:">
           <textarea
-            id={getIdFor('overview')}
             name="overview"
             className="form-textarea"
             placeholder="Movie description"
