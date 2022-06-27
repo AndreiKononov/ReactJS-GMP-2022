@@ -9,6 +9,7 @@ import { EditMovieForm } from '../EditMovieForm/EditMovieForm';
 import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
+import { EditMovieFormValue } from '../../models/EditMovieFormValue';
 import './MovieListCard.scss';
 
 
@@ -55,7 +56,7 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
     setMovieToDelete(true);
   }, []);
 
-  const handleMovieEdit = useCallback((formValue: Partial<Movie>) => {
+  const handleMovieEdit = useCallback((formValue: EditMovieFormValue) => {
     console.log(formValue);
   }, []);
 

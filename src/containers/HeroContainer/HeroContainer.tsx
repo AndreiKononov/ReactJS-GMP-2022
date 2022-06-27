@@ -8,14 +8,14 @@ import { Logo } from '../../components/Logo/Logo';
 import { Modal } from '../../components/Modal/Modal';
 import { MovieCardSelected } from '../../components/MovieCardSelected/MovieCardSelected';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { Movie } from '../../models/Movie';
+import { EditMovieFormValue } from '../../models/EditMovieFormValue';
 
 export function HeroContainer() {
   const { selectedMovie, setSelectedMovie } = useContext(SelectedMovieContext);
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 
-  function handleMovieFormSubmit(formValue: Partial<Movie>) {
+  function handleMovieFormSubmit(formValue: EditMovieFormValue) {
     console.log(formValue);
   }
 
