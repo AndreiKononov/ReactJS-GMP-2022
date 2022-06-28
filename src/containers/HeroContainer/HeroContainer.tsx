@@ -8,11 +8,10 @@ import { Modal } from '../../components/Modal/Modal';
 import { MovieCardSelected } from '../../components/MovieCardSelected/MovieCardSelected';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { EditMovieFormValue } from '../../models/EditMovieFormValue';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { RootState } from '../../store';
+import { useMovies } from '../../hooks/useMovies';
 
 export function HeroContainer() {
-  const { selectedMovie } = useAppSelector((state: RootState) => state.movies);
+  const { selectedMovie } = useMovies();
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 

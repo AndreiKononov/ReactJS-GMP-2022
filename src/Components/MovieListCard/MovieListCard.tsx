@@ -10,8 +10,9 @@ import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import { EditMovieFormValue } from '../../models/EditMovieFormValue';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { setSelectedMovie } from '../../store/moviesReducer';
+import { deleteMovieById, fetchMovies, setSelectedMovie } from '../../store/moviesReducer';
 import { handleImgOnError } from '../../utils/handleImgOnError';
+import { useMovies } from '../../hooks/useMovies';
 import './MovieListCard.scss';
 
 
@@ -36,6 +37,7 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   const [movieToDelete, setMovieToDelete] = useState(false);
   const [movieToEdit, setMovieToEdit] = useState(false);
 
+  const { queryParams } = useMovies();
   const dispatch = useAppDispatch();
 
   const handleEditClicked = useCallback(() => {
@@ -53,10 +55,16 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [movie, dispatch]);
 
-  const handleMovieDelete = useCallback(() => {
-    alert('Delete movie');
-    setMovieToDelete(true);
-  }, []);
+  const handleMovieDelete = useCallback(async () => {
+    try {
+      await dispatch(deleteMovieById(movie!.id)).unwrap();
+
+      setMovieToDelete(false);
+      dispatch(fetchMovies(queryParams));
+    } catch (rejectedValueOrSerializedError) {
+      console.log(rejectedValueOrSerializedError);
+    }
+  }, [movieToDelete, dispatch, queryParams]);
 
   const handleMovieEdit = useCallback((formValue: EditMovieFormValue) => {
     console.log(formValue);

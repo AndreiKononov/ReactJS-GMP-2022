@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialQueryParams } from './initialQueryParams';
 import { Movie } from '../models/Movie';
 import { QueryParams } from '../models/QueryParams';
-import { fetchMoviesFromServer } from './fetchMoviesFromServer';
+import { MoviesApiService } from './moviesApiService';
 
 interface FetchedMoviesState {
   fetchedMovies: Movie[];
@@ -20,7 +20,8 @@ const initialState: FetchedMoviesState = {
   selectedMovie: null,
 };
 
-export const fetchMovies = createAsyncThunk('toolkit/moviesReducer/fetchMovies', fetchMoviesFromServer);
+export const fetchMovies = createAsyncThunk('toolkit/moviesReducer/fetchMovies', MoviesApiService.fetchMoviesFromServer);
+export const deleteMovieById = createAsyncThunk('toolkit/moviesReducer/deleteMovie', MoviesApiService.deleteMovieById);
 
 const moviesSlice = createSlice({
   name: 'tookit/moviesReducer',
@@ -60,6 +61,9 @@ const moviesSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     });
+    builder.addCase(deleteMovieById.fulfilled, (state: FetchedMoviesState) => ({
+      ...state,
+    }));
   },
 });
 

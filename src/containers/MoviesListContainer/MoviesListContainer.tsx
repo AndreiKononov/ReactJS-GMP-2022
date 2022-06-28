@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { ErrorBoundary } from '../../components/ErrorBoundary/ErrorBoundary';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
-import { RootState } from '../../store';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { fetchMovies } from '../../store/moviesReducer';
-import { useAppSelector } from '../../hooks/useAppSelector';
+import { useMovies } from '../../hooks/useMovies';
 
 export function MoviesListContainer() {
-  const { fetchedMovies, isLoading, isError, queryParams } = useAppSelector((state: RootState) => state.movies);
+  const { fetchedMovies, isLoading, isError, queryParams } = useMovies();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
