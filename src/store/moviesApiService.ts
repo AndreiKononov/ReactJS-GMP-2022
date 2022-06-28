@@ -1,12 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
+import { Movie } from '../models/Movie';
 import { MovieResponse } from '../models/MovieResponse';
 import { QueryParams } from '../models/QueryParams';
-import { initialQueryParams } from './initialQueryParams';
+import { initialQueryParams } from '../utils/initialQueryParams';
 
 const MOVIES_API_URL = 'http://localhost:4000/movies';
 
 export class MoviesApiService {
-  static async fetchMoviesFromServer(queryParams: QueryParams = initialQueryParams) {
+  static async fetchMovies(queryParams: QueryParams = initialQueryParams): Promise<Movie[]> {
     const url = MOVIES_API_URL;
 
     const {

@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialQueryParams } from './initialQueryParams';
+import { initialQueryParams } from '../utils/initialQueryParams';
 import { Movie } from '../models/Movie';
 import { QueryParams } from '../models/QueryParams';
 import { MoviesApiService } from './moviesApiService';
 
 interface FetchedMoviesState {
-  fetchedMovies: Movie[];
+  movies: Movie[];
   isLoading: boolean;
   isError: boolean;
   queryParams: QueryParams;
@@ -13,14 +13,14 @@ interface FetchedMoviesState {
 }
 
 const initialState: FetchedMoviesState = {
-  fetchedMovies: [],
+  movies: [],
   isLoading: false,
   isError: false,
   queryParams: initialQueryParams,
   selectedMovie: null,
 };
 
-export const fetchMovies = createAsyncThunk('toolkit/moviesReducer/fetchMovies', MoviesApiService.fetchMoviesFromServer);
+export const fetchMovies = createAsyncThunk('toolkit/moviesReducer/fetchMovies', MoviesApiService.fetchMovies);
 export const deleteMovieById = createAsyncThunk('toolkit/moviesReducer/deleteMovie', MoviesApiService.deleteMovieById);
 
 const moviesSlice = createSlice({
@@ -51,10 +51,11 @@ const moviesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state: FetchedMoviesState) => {
+      state.isError = false;
       state.isLoading = true;
     });
     builder.addCase(fetchMovies.fulfilled, (state: FetchedMoviesState, action: PayloadAction<Movie[]>) => {
-      state.fetchedMovies = action.payload;
+      state.movies = action.payload;
       state.isLoading = false;
     });
     builder.addCase(fetchMovies.rejected, (state: FetchedMoviesState) => {

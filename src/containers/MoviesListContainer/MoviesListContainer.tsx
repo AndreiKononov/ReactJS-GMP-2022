@@ -6,7 +6,7 @@ import { fetchMovies } from '../../store/moviesReducer';
 import { useMovies } from '../../hooks/useMovies';
 
 export function MoviesListContainer() {
-  const { fetchedMovies, isLoading, isError, queryParams } = useMovies();
+  const { movies, isLoading, isError, queryParams } = useMovies();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export function MoviesListContainer() {
     <h1>Fetching Error!</h1>
   ) : (
     <ErrorBoundary componentName="MoviesListContainer">
-      <MoviesList movies={fetchedMovies}></MoviesList>
+      <MoviesList movies={movies}></MoviesList>
     </ErrorBoundary>
   );
 
