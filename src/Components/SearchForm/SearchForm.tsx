@@ -1,19 +1,17 @@
-import React, { useContext, useId, useState } from 'react';
-import { FetchedMoviesContext } from '../../contexts/FetchedMoviesContext';
+import React, { useId, useState } from 'react';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { setSearch } from '../../store/moviesReducer';
 import './SearchForm.scss';
 
 export function SearchForm() {
-  const [{ queryParams: currentQueryParams }, setQueryParams] = useContext(FetchedMoviesContext);
-  const [searchValue, setSearchValue] = useState(currentQueryParams.search);
+  const [searchValue, setSearchValue] = useState('');
+
+  const dispatch = useAppDispatch();
   const inputIdPrefix = useId();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    setQueryParams({
-      ...currentQueryParams,
-      search: searchValue,
-    });
+    dispatch(setSearch(searchValue));
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
