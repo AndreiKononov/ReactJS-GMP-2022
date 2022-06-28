@@ -16,11 +16,11 @@ export function MoviesListOptionsContainer() {
   const { fetchedMovies, queryParams } = useAppSelector((state: RootState) => state.movies);
   const dispatch = useAppDispatch();
 
-  const handleGenreChange = (genre: Genre) => {
+  const handleGenreChange = (genre: Genre): void => {
     dispatch(setFilter(genre.value));
   };
 
-  const handleSortByChange = (selectValue: SelectValue) => {
+  const handleSortByChange = (selectValue: SelectValue): void => {
     dispatch(setSortBy(selectValue.value));
   };
 

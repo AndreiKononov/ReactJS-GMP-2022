@@ -9,6 +9,7 @@ interface FetchedMoviesState {
   isLoading: boolean;
   isError: boolean;
   queryParams: QueryParams;
+  selectedMovie: Movie | null;
 }
 
 const initialState: FetchedMoviesState = {
@@ -16,6 +17,7 @@ const initialState: FetchedMoviesState = {
   isLoading: false,
   isError: false,
   queryParams: initialQueryParams,
+  selectedMovie: null,
 };
 
 export const fetchMovies = createAsyncThunk('toolkit/moviesReducer/fetchMovies', fetchMoviesFromServer);
@@ -42,6 +44,9 @@ const moviesSlice = createSlice({
         search: action.payload,
       };
     },
+    setSelectedMovie: (state: FetchedMoviesState, action: PayloadAction<Movie | null>) => {
+      state.selectedMovie = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state: FetchedMoviesState) => {
@@ -58,5 +63,5 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { setSortBy, setFilter, setSearch } = moviesSlice.actions;
+export const { setSortBy, setFilter, setSearch, setSelectedMovie } = moviesSlice.actions;
 export default moviesSlice.reducer;

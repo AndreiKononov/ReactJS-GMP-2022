@@ -6,4 +6,5 @@ export const initialQueryParams: QueryParams = {
   search: '',
   searchBy: 'title',
   filter: '',
+  limit: 21,
 };

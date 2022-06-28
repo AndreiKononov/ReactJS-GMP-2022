@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from '../Dropdown/Dropdown';
@@ -6,10 +6,12 @@ import { Movie } from '../../models/Movie';
 import { Modal } from '../Modal/Modal';
 import { DeleteMovieConfirm } from '../DeleteMovieConfirm/DeleteMovieConfirm';
 import { EditMovieForm } from '../EditMovieForm/EditMovieForm';
-import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import { EditMovieFormValue } from '../../models/EditMovieFormValue';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { setSelectedMovie } from '../../store/moviesReducer';
+import { handleImgOnError } from '../../utils/handleImgOnError';
 import './MovieListCard.scss';
 
 
@@ -34,7 +36,7 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   const [movieToDelete, setMovieToDelete] = useState(false);
   const [movieToEdit, setMovieToEdit] = useState(false);
 
-  const { setSelectedMovie } = useContext(SelectedMovieContext);
+  const dispatch = useAppDispatch();
 
   const handleEditClicked = useCallback(() => {
     setIsContextMenuOpen(false);
@@ -47,9 +49,9 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   }, []);
 
   const handleMovieSelect = useCallback(() => {
-    setSelectedMovie(movie);
+    dispatch(setSelectedMovie(movie));
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, [movie, setSelectedMovie]);
+  }, [movie, dispatch]);
 
   const handleMovieDelete = useCallback(() => {
     alert('Delete movie');
@@ -77,7 +79,13 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
 
   return (
     <div className="movies-list-card">
-      <img className="movies-list-card-image" alt={`${title} poster`} src={poster_path} onClick={handleMovieSelect} />
+      <img
+        className="movies-list-card-image"
+        alt={`${title} poster`}
+        src={poster_path}
+        onClick={handleMovieSelect}
+        onError={handleImgOnError}
+      />
       <div className="movies-list-card-header">
         <span className="movies-list-card-title" onClick={handleMovieSelect}>
           {title}

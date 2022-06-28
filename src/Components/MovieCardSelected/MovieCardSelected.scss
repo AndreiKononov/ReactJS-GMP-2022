@@ -36,6 +36,7 @@
     .movie-card-selected-content {
       margin-left: 58px;
       text-align: left;
+      flex-grow: 1;
 
       .movie-card-selected-content-header {
         display: flex;
@@ -47,7 +48,7 @@
           font-weight: 300;
           font-size: 40px;
           line-height: 49px;
-          text-align: center;
+          text-align: left;
           letter-spacing: 1px;
           text-transform: uppercase;
           color: $color_white;

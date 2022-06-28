@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
+import { useState } from 'react';
 import { AddMovieBtn } from '../../components/AddMovieBtn/AddMovieBtn';
 import { EditMovieForm } from '../../components/EditMovieForm/EditMovieForm';
 import { Header } from '../../components/Header/Header';
@@ -9,9 +8,11 @@ import { Modal } from '../../components/Modal/Modal';
 import { MovieCardSelected } from '../../components/MovieCardSelected/MovieCardSelected';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { EditMovieFormValue } from '../../models/EditMovieFormValue';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { RootState } from '../../store';
 
 export function HeroContainer() {
-  const { selectedMovie, setSelectedMovie } = useContext(SelectedMovieContext);
+  const { selectedMovie } = useAppSelector((state: RootState) => state.movies);
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 
@@ -35,7 +36,7 @@ export function HeroContainer() {
       {modal}
     </Hero>
   ) : (
-    <MovieCardSelected movie={selectedMovie} setSelectedMovie={setSelectedMovie} />
+    <MovieCardSelected movie={selectedMovie} />
   );
 
   return heroElement;

@@ -4,4 +4,5 @@ export interface QueryParams {
   search: string;
   searchBy: 'title' | 'genre';
   filter: string;
+  limit: number;
 }
