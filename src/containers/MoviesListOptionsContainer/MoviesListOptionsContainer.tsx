@@ -31,8 +31,10 @@ export function MoviesListOptionsContainer() {
 
   return (
     <>
-      <FilterPanel genres={genres} selectedGenre={queryParams.filter} handleSelect={handleGenreChange} />
-      <SortPanel sortOptions={sortOptions} sortByValue={getSortByValue(queryParams.sortBy)} handleSelect={handleSortByChange} />
+      <div className="options-panel">
+        <FilterPanel genres={genres} selectedGenre={queryParams.filter} handleSelect={handleGenreChange} />
+        <SortPanel sortOptions={sortOptions} sortByValue={getSortByValue(queryParams.sortBy)} handleSelect={handleSortByChange} />
+      </div>
       <MoviesFound numberOfMovies={memoizedFetchMoviesNumber} />
     </>
   );
