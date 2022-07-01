@@ -5,29 +5,50 @@ import { Genre } from '../../models/Genre';
 import { Movie } from '../../models/Movie';
 import { FormField } from '../FormField/FormField';
 import { FormSelect } from '../FormSelect/FormSelect';
+import { createMovie, editMovie, fetchMovies } from '../../store/moviesReducer';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useMovies } from '../../hooks/useMovies';
+import { getMovieFromFormValue } from '../../utils/getMovieFromFormValue';
 import './EditMovie.scss';
 
 interface EditMovieProps {
   movie: Movie | null;
-  onSubmit: (formValue: EditMovieFormValue) => void;
+  handleClose: () => void;
 }
 
 function setInitialFormValue(movie: Movie | null): EditMovieFormValue {
   return {
-  title: movie?.title || '',
-  release_date: movie?.release_date || '',
-  poster_path: movie?.poster_path || '',
-  vote_average: movie?.vote_average || 0,
-  runtime: movie?.runtime || 0,
-  overview: movie?.overview || '',
-  genres: movie?.genres.map((value: string): Genre => ({ value, label: value })) || [],
+    title: movie?.title || '',
+    release_date: movie?.release_date || '',
+    poster_path: movie?.poster_path || '',
+    vote_average: movie?.vote_average?.toString() || '',
+    runtime: movie?.runtime?.toString() || '',
+    overview: movie?.overview || '',
+    genres: movie?.genres.map((value: string): Genre => ({ value, label: value })) || [],
   };
 }
 
 const genreSelectOptions = genres;
 
-export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
+export const EditMovieForm = ({ movie, handleClose }: EditMovieProps) => {
+  const dispatch = useAppDispatch();
+  const { queryParams } = useMovies();
   const [formValue, setFormValue] = useState<EditMovieFormValue>(setInitialFormValue(movie));
+
+  const handleFormSubmit = async (formValue: EditMovieFormValue) => {
+    const isEditing = !!movie?.id;
+
+    const formMovie: Partial<Movie> = getMovieFromFormValue(formValue);
+    const actionToDispatch = isEditing ? editMovie({ ...formMovie, id: movie.id }) : createMovie(formMovie);
+
+    try {
+      await dispatch(actionToDispatch).unwrap();
+      dispatch(fetchMovies(queryParams));
+      handleClose();
+    }
+    // TODO
+    catch {}
+  };
 
   function onChange(event: BaseSyntheticEvent): void {
     setFormValue({
@@ -49,7 +70,7 @@ export const EditMovieForm = ({ movie, onSubmit }: EditMovieProps) => {
 
   function onFormSubmit(event: BaseSyntheticEvent): void {
     event.preventDefault();
-    onSubmit(formValue);
+    handleFormSubmit(formValue);
   }
 
   function getIdFor(fieldName: string): string {

@@ -7,7 +7,6 @@ import { Logo } from '../../components/Logo/Logo';
 import { Modal } from '../../components/Modal/Modal';
 import { MovieCardSelected } from '../../components/MovieCardSelected/MovieCardSelected';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { EditMovieFormValue } from '../../models/EditMovieFormValue';
 import { useMovies } from '../../hooks/useMovies';
 
 export function HeroContainer() {
@@ -15,13 +14,11 @@ export function HeroContainer() {
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 
-  function handleMovieFormSubmit(formValue: EditMovieFormValue) {
-    console.log(formValue);
-  }
+  const closeModal = () => setShouldShowAddMovieModal(false);
 
   const modal = shouldShowAddMovieModal ? (
     <Modal title="Add Movie" handleClose={() => setShouldShowAddMovieModal(false)}>
-      <EditMovieForm movie={null} onSubmit={handleMovieFormSubmit} />
+      <EditMovieForm movie={null} handleClose={closeModal}  />
     </Modal>
   ) : null;
 
