@@ -1,39 +1,39 @@
-import { useContext, useMemo, useState } from 'react';
-import { FetchedMoviesContext } from '../../contexts/FetchedMoviesContext';
+import { useMemo } from 'react';
 import { GenreTogglePanel as FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { MoviesFound } from '../../components/MoviesFound/MoviesFound';
 import { SortPanel } from '../../components/SortPanel/SortPanel';
-import { genres } from '../../mocks/genres';
-import { sortOptions } from '../../mocks/sortOptions';
+import { genres } from './genres';
+import { sortOptions } from './sortOptions';
 import { SelectValue } from '../../models/SelectValue';
+import { Genre } from '../../models/Genre';
+import { setFilter, setSortBy } from '../../store/moviesReducer';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useMovies } from '../../hooks/useMovies';
 import './MoviesListOptionsContainer.scss';
 
 export function MoviesListOptionsContainer() {
-  const [genresToFilter, setGenresToFilter] = useState(genres);
-  const [selectedGenre, setSelectedGenre] = useState(genres[0]);
+  const { movies, queryParams } = useMovies();
+  const dispatch = useAppDispatch();
 
-  const [optionsToSortBy, setSortOptions] = useState(sortOptions);
-  const [sortBy, setSortBy] = useState<SelectValue | null>(null);
-
-  const [{ fetchedMovies, queryParams: currentQueryParams }, setQueryParams] = useContext(FetchedMoviesContext);
-
-  const handleGenreChange = (value: string) => {
-    setSelectedGenre(value);
-    setQueryParams({ ...currentQueryParams, genre: value });
+  const handleGenreChange = (genre: Genre): void => {
+    dispatch(setFilter(genre.value));
   };
 
-  const handleSortByChange = (selectValue: SelectValue) => {
-    setSortBy(selectValue);
-    setQueryParams({ ...currentQueryParams, sort: selectValue.value });
+  const handleSortByChange = (selectValue: SelectValue): void => {
+    dispatch(setSortBy(selectValue.value));
   };
 
-  const memoizedFetchMoviesNumber = useMemo(() => fetchedMovies.length, [fetchedMovies]);
+  const getSortByValue = (value: string): SelectValue => {
+    return sortOptions.find((option) => option.value === value)!;
+  };
+
+  const memoizedFetchMoviesNumber = useMemo(() => movies.length, [movies]);
 
   return (
     <>
       <div className="options-panel">
-        <FilterPanel genres={genresToFilter} selectedGenre={selectedGenre} handleSelect={handleGenreChange} />
-        <SortPanel sortOptions={optionsToSortBy} sortByValue={sortBy} handleSelect={handleSortByChange} />
+        <FilterPanel genres={genres} selectedGenre={queryParams.filter} handleSelect={handleGenreChange} />
+        <SortPanel sortOptions={sortOptions} sortByValue={getSortByValue(queryParams.sortBy)} handleSelect={handleSortByChange} />
       </div>
       <MoviesFound numberOfMovies={memoizedFetchMoviesNumber} />
     </>

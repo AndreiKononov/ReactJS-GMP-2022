@@ -1,12 +1,17 @@
 @import 'src/scss/variables';
 
 .movies-list-card {
+  display: flex;
+  flex-direction: column;
   position: relative;
   text-align: left;
+  height: 100%;
 
   .movies-list-card-image {
+    flex-grow: 1;
     max-width: 100%;
     margin-bottom: 22px;
+    object-fit: cover;
     cursor: pointer;
   }
 

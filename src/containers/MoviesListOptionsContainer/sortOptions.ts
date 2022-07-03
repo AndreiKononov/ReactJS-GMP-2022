@@ -1,4 +1,4 @@
-import { SelectValue } from '../models/SelectValue';
+import { SelectValue } from '../../models/SelectValue';
 
 export const sortOptions: SelectValue[] = [
   { value: 'release_date', label: 'Release Date' },

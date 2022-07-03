@@ -32,27 +32,28 @@
     .movie-card-selected-image {
       max-width: 320px;
     }
-  
+
     .movie-card-selected-content {
       margin-left: 58px;
       text-align: left;
-  
+      flex-grow: 1;
+
       .movie-card-selected-content-header {
         display: flex;
         justify-content: flex-start;
         align-self: center;
         margin-bottom: 4px;
-  
+
         .movie-card-selected-title {
           font-weight: 300;
           font-size: 40px;
           line-height: 49px;
-          text-align: center;
+          text-align: left;
           letter-spacing: 1px;
           text-transform: uppercase;
           color: $color_white;
         }
-  
+
         .movie-card-selected-rating {
           display: flex;
           align-items: center;
@@ -64,32 +65,33 @@
           text-transform: uppercase;
           color: $color_white;
           width: 60px;
+          min-width: 60px;
           height: 60px;
           border: 1px solid $color_white;
           border-radius: 30px;
           margin-left: 25px;
         }
       }
-  
+
       .movie-card-selected-genres {
         font-weight: 500;
         font-size: 14px;
         line-height: 17px;
         color: rgba($color_white, 0.5);
       }
-  
+
       .movie-card-selected-info {
         margin-top: 30px;
         font-weight: 300;
         font-size: 24px;
         line-height: 29px;
         color: $color_wild_watermelon;
-  
+
         > span:last-child {
           margin-left: 50px;
         }
       }
-  
+
       .movie-card-selected-overview {
         margin-top: 30px;
         font-weight: 300;

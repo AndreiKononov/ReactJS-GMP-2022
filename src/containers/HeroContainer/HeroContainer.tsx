@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { SelectedMovieContext } from '../../contexts/SelectedMovieContext';
+import { useState } from 'react';
 import { AddMovieBtn } from '../../components/AddMovieBtn/AddMovieBtn';
 import { EditMovieForm } from '../../components/EditMovieForm/EditMovieForm';
 import { Header } from '../../components/Header/Header';
@@ -8,20 +7,18 @@ import { Logo } from '../../components/Logo/Logo';
 import { Modal } from '../../components/Modal/Modal';
 import { MovieCardSelected } from '../../components/MovieCardSelected/MovieCardSelected';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { Movie } from '../../models/Movie';
+import { useMovies } from '../../hooks/useMovies';
 
 export function HeroContainer() {
-  const { selectedMovie, setSelectedMovie } = useContext(SelectedMovieContext);
+  const { selectedMovie } = useMovies();
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 
-  function handleMovieFormSubmit(formValue: Partial<Movie>) {
-    console.log(formValue);
-  }
+  const closeModal = () => setShouldShowAddMovieModal(false);
 
   const modal = shouldShowAddMovieModal ? (
     <Modal title="Add Movie" handleClose={() => setShouldShowAddMovieModal(false)}>
-      <EditMovieForm movie={null} onSubmit={handleMovieFormSubmit} />
+      <EditMovieForm movie={null} handleClose={closeModal}  />
     </Modal>
   ) : null;
 
@@ -35,7 +32,7 @@ export function HeroContainer() {
       {modal}
     </Hero>
   ) : (
-    <MovieCardSelected movie={selectedMovie} setSelectedMovie={setSelectedMovie} />
+    <MovieCardSelected movie={selectedMovie} />
   );
 
   return heroElement;
