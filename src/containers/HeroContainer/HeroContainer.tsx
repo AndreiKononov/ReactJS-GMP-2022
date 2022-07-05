@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AddMovieBtn } from '../../components/AddMovieBtn/AddMovieBtn';
-import { EditMovieForm } from '../../components/EditMovieForm/EditMovieForm';
+import { EditMovieFormik } from '../../components/EditMovieFormik/EditMovieFormik';
 import { Header } from '../../components/Header/Header';
 import { Hero } from '../../components/Hero/Hero';
 import { Logo } from '../../components/Logo/Logo';
@@ -17,8 +17,8 @@ export function HeroContainer() {
   const closeModal = () => setShouldShowAddMovieModal(false);
 
   const modal = shouldShowAddMovieModal ? (
-    <Modal title="Add Movie" handleClose={() => setShouldShowAddMovieModal(false)}>
-      <EditMovieForm movie={null} handleClose={closeModal}  />
+    <Modal title="Add Movie" handleClose={closeModal}>
+      <EditMovieFormik movie={null} handleClose={closeModal}  />
     </Modal>
   ) : null;
 
