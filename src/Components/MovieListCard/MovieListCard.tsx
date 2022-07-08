@@ -5,13 +5,12 @@ import { Dropdown } from '../Dropdown/Dropdown';
 import { Movie } from '../../models/Movie';
 import { Modal } from '../Modal/Modal';
 import { DeleteMovieConfirm } from '../DeleteMovieConfirm/DeleteMovieConfirm';
-import { EditMovieForm } from '../EditMovieForm/EditMovieForm';
+import { EditMovieFormik } from '../EditMovieFormik/EditMovieFormik';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { deleteMovieById, fetchMovies, setSelectedMovie } from '../../store/moviesReducer';
+import { setSelectedMovie } from '../../store/moviesReducer';
 import { handleImgOnError } from '../../utils/handleImgOnError';
-import { useMovies } from '../../hooks/useMovies';
 import './MovieListCard.scss';
 
 
@@ -36,7 +35,6 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   const [movieToDelete, setMovieToDelete] = useState(false);
   const [movieToEdit, setMovieToEdit] = useState(false);
 
-  const { queryParams } = useMovies();
   const dispatch = useAppDispatch();
 
   const handleEditClicked = useCallback(() => {
@@ -54,29 +52,18 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [movie, dispatch]);
 
-  const handleMovieDelete = useCallback(async () => {
-    try {
-      await dispatch(deleteMovieById(movie!.id)).unwrap();
-
-      setMovieToDelete(false);
-      dispatch(fetchMovies(queryParams));
-    } catch (rejectedValueOrSerializedError) {
-      console.log(rejectedValueOrSerializedError);
-    }
-  }, [movieToDelete, dispatch, queryParams]);
-
   const closeEditMovieModal = () => setMovieToEdit(false);
   const closeDeleteMovieModal = () => setMovieToDelete(false);
 
   const deleteMovieModal = movieToDelete ? (
     <Modal title="Delete movie" handleClose={closeDeleteMovieModal}>
-      <DeleteMovieConfirm handleConfirm={handleMovieDelete} />
+      <DeleteMovieConfirm movieId={movie.id} handleClose={closeDeleteMovieModal} />
     </Modal>
   ) : null;
 
   const editMovieModal = movieToEdit ? (
     <Modal title="Add Movie" handleClose={closeEditMovieModal}>
-      <EditMovieForm movie={movie} handleClose={closeEditMovieModal} />
+      <EditMovieFormik movie={movie} handleClose={closeEditMovieModal} />
     </Modal>
   ) : null;
 

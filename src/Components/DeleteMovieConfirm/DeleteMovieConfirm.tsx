@@ -1,17 +1,49 @@
+import { Formik, FormikProps, Form, FormikHelpers } from 'formik';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useMovies } from '../../hooks/useMovies';
+import { AsyncSubmitStatus } from '../../models/AsyncSubmitStatus';
+import { deleteMovieById, fetchMovies } from '../../store/moviesReducer';
 import './DeleteMovieConfirm.scss';
 
-interface DeleteMovieConfirmProps {
-  handleConfirm: () => void;
+interface DeleteMovieFormValue {
+  movieId: number;
 }
 
-export const DeleteMovieConfirm = ({handleConfirm}: DeleteMovieConfirmProps) => {
-  return (
-    <div className="confirm-modal">
-      <p className="confirm-text">Are you sure you want to delete this movie?</p>
+interface DeleteMovieProps extends DeleteMovieFormValue {
+  handleClose: () => void;
+}
 
-      <button className="app-btn confirm-btn" onClick={handleConfirm}>
-        Confirm
-      </button>
-    </div>
+export const DeleteMovieConfirm = ({ movieId, handleClose }: DeleteMovieProps) => {
+  const { queryParams } = useMovies();
+  const dispatch = useAppDispatch();
+
+  const handleFormSubmit = async ({ movieId }, { setSubmitting, setStatus }: FormikHelpers<{ movieId: number }>) => {
+    try {
+      await dispatch(deleteMovieById(movieId)).unwrap();
+      dispatch(fetchMovies(queryParams));
+      handleClose();
+      setStatus(AsyncSubmitStatus.SUBMIT_SUCCESS);
+    } catch (rejectedValueOrSerializedError) {
+      setStatus(AsyncSubmitStatus.SUBMIT_FAIL);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <Formik initialValues={{ movieId }} onSubmit={handleFormSubmit}>
+      {({ isSubmitting, status }: FormikProps<DeleteMovieFormValue>) => (
+        <Form className="edit-movie-form">
+          {status === AsyncSubmitStatus.SUBMIT_FAIL && <p className="form-error">Submit failed. Please try again.</p>}
+
+          <div className="confirm-modal">
+            <p className="confirm-text">Are you sure you want to delete this movie?</p>
+            <button className="app-btn confirm-btn" type="submit" disabled={isSubmitting}>
+              Confirm
+            </button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };
