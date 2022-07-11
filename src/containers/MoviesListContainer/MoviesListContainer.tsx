@@ -4,14 +4,17 @@ import { MoviesList } from '../../components/MoviesList/MoviesList';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { fetchMovies } from '../../store/moviesReducer';
 import { useMovies } from '../../hooks/useMovies';
+import { useQueryParams } from '../../hooks/useQueryParams';
 
 export function MoviesListContainer() {
-  const { movies, isLoading, isError, queryParams } = useMovies();
   const dispatch = useAppDispatch();
 
+  const { movies, isLoading, isError } = useMovies();
+  const routerQueryParams = useQueryParams();
+
   useEffect(() => {
-    dispatch(fetchMovies(queryParams));
-  }, [queryParams, dispatch]);
+    dispatch(fetchMovies(routerQueryParams));
+  }, [routerQueryParams, dispatch]);
 
   const content = isError ? (
     <h1>Fetching Error!</h1>

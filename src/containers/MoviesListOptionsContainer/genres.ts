@@ -2,8 +2,8 @@ import { Genre } from '../../models/Genre';
 
 export const genres: Genre[] = [
   { value: '', label: 'All' },
-  { value: 'Action', label: 'Action' },
-  { value: 'Comedy', label: 'Comedy' },
-  { value: 'Fantasy', label: 'Fantasy' },
-  { value: 'Science Fiction', label: 'Science Fiction' },
+  { value: 'action', label: 'Action' },
+  { value: 'comedy', label: 'Comedy' },
+  { value: 'fantasy', label: 'Fantasy' },
+  { value: 'science fiction', label: 'Science Fiction' },
 ];

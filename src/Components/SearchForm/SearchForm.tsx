@@ -1,42 +1,44 @@
-import React, { useId, useState } from 'react';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { setSearch } from '../../store/moviesReducer';
-import { useMovies } from '../../hooks/useMovies';
+import { useId } from 'react';
+import { Formik, Form } from 'formik';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { TextField } from '../TextField/TextField';
+
 import './SearchForm.scss';
 
 export function SearchForm() {
-  const { queryParams } = useMovies();
-  const [searchValue, setSearchValue] = useState(queryParams.search);
-
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { searchQuery } = useParams();
+  const [searchParams] = useSearchParams();
   const inputIdPrefix = useId();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    dispatch(setSearch(searchValue));
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
+  const handleSubmit = ({ searchValue }) => {
+    navigate(
+      {
+        pathname: `/search/${searchValue}`,
+        search: searchParams.toString(),
+      },
+      { replace: true }
+    );
   };
 
   return (
     <div className="searchForm-wrapper">
       <h1 className="searchForm-title">Find your movie</h1>
-
-      <form className="searchForm" onSubmit={handleSubmit}>
-        <input
-          id={`${inputIdPrefix}_searchInput`}
-          className="searchForm-input form-input"
-          type="text"
-          value={searchValue}
-          onChange={handleChange}
-          placeholder="What do you want to watch?"
-        />
-        <button className="app-btn searchForm-btn" type="submit">
-          Search
-        </button>
-      </form>
+      <Formik initialValues={{ searchValue: searchQuery }} onSubmit={handleSubmit}>
+        <Form className="searchForm">
+          <TextField
+            name="searchValue"
+            className="form-input"
+            id={`${inputIdPrefix}_search-input`}
+            label=""
+            type="text"
+            placeholder="What do you want to watch?"
+          />
+          <button className="app-btn searchForm-btn" type="submit">
+            Search
+          </button>
+        </Form>
+      </Formik>
     </div>
   );
 }
