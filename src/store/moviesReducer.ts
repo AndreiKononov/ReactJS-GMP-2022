@@ -18,7 +18,6 @@ export const fetchMovies = createAsyncThunk('toolkit/moviesReducer/fetchMovies',
 export const deleteMovieById = createAsyncThunk('toolkit/moviesReducer/deleteMovie', MoviesApiService.deleteMovieById);
 export const createMovie = createAsyncThunk('toolkit/moviesReducer/createMovie', MoviesApiService.createMovie);
 export const editMovie = createAsyncThunk('toolkit/moviesReducer/editMovie', MoviesApiService.editMovie);
-export const fetchMovieById = createAsyncThunk('toolkit/moviesReducer/fetchMovie', MoviesApiService.fetchMovieById);
 
 const moviesSlice = createSlice({
   name: 'tookit/moviesReducer',
@@ -26,6 +25,7 @@ const moviesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state: FetchedMoviesState) => {
+      state.movies = [];
       state.isError = false;
       state.isLoading = true;
     });
