@@ -17,7 +17,15 @@ export class MoviesApiService {
     return fetchedMovies;
   }
 
-  static async deleteMovieById(id: number): Promise<number> {
+  static async fetchMovieById(id: number | string): Promise<Movie> {
+    const url = `${MOVIES_API_URL}/${id}`;
+
+    const { data } = await axios(url, { method: 'GET' });
+
+    return data;
+  }
+
+  static async deleteMovieById(id: number | string): Promise<number> {
     const url = `${MOVIES_API_URL}/${id}`;
 
     const { status } = await axios(url, { method: 'DELETE' });

@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '../Logo/Logo';
@@ -6,8 +7,6 @@ import { transformDuration } from '../../utils/transformDuration';
 import { Movie } from '../../models/Movie';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { setSelectedMovie } from '../../store/moviesReducer';
 import { handleImgOnError } from '../../utils/handleImgOnError';
 import './MovieCardSelected.scss';
 
@@ -18,11 +17,12 @@ interface MovieCardSelectedProps {
 function MovieCardSelectedComponent({ movie }: MovieCardSelectedProps) {
   const { title, poster_path, vote_average, genres, release_date, runtime, overview } = movie;
 
-  const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleGoToSearch = useCallback(() => {
-    dispatch(setSelectedMovie(null));
-  }, [dispatch]);
+    searchParams.delete('movie');
+    setSearchParams(searchParams);
+  }, [searchParams, setSearchParams]);
 
   return (
     <div className="movie-card-selected">
