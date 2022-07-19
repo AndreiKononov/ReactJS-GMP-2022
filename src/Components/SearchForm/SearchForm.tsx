@@ -14,7 +14,7 @@ export function SearchForm() {
   const handleSubmit = ({ searchValue }) => {
     navigate(
       {
-        pathname: `/search/${searchValue}`,
+        pathname: `/search/${searchValue ?? ''}`,
         search: searchParams.toString(),
       },
       { replace: true }
