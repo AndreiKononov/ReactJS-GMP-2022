@@ -1,23 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialQueryParams } from '../utils/initialQueryParams';
 import { Movie } from '../models/Movie';
-import { QueryParams } from '../models/QueryParams';
 import { MoviesApiService } from './moviesApiService';
 
 interface FetchedMoviesState {
   movies: Movie[];
   isLoading: boolean;
   isError: boolean;
-  queryParams: QueryParams;
-  selectedMovie: Movie | null;
 }
 
 const initialState: FetchedMoviesState = {
   movies: [],
   isLoading: false,
   isError: false,
-  queryParams: initialQueryParams,
-  selectedMovie: null,
 };
 
 export const fetchMovies = createAsyncThunk('toolkit/moviesReducer/fetchMovies', MoviesApiService.fetchMovies);
@@ -28,31 +22,10 @@ export const editMovie = createAsyncThunk('toolkit/moviesReducer/editMovie', Mov
 const moviesSlice = createSlice({
   name: 'tookit/moviesReducer',
   initialState: initialState,
-  reducers: {
-    setSortBy: (state: FetchedMoviesState, action: PayloadAction<string>) => {
-      state.queryParams = {
-        ...state.queryParams,
-        sortBy: action.payload,
-      };
-    },
-    setFilter: (state: FetchedMoviesState, action: PayloadAction<string>) => {
-      state.queryParams = {
-        ...state.queryParams,
-        filter: action.payload,
-      };
-    },
-    setSearch: (state: FetchedMoviesState, action: PayloadAction<string>) => {
-      state.queryParams = {
-        ...state.queryParams,
-        search: action.payload,
-      };
-    },
-    setSelectedMovie: (state: FetchedMoviesState, action: PayloadAction<Movie | null>) => {
-      state.selectedMovie = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state: FetchedMoviesState) => {
+      state.movies = [];
       state.isError = false;
       state.isLoading = true;
     });
@@ -64,11 +37,7 @@ const moviesSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     });
-    builder.addCase(deleteMovieById.fulfilled, (state: FetchedMoviesState) => ({
-      ...state,
-    }));
   },
 });
 
-export const { setSortBy, setFilter, setSearch, setSelectedMovie } = moviesSlice.actions;
 export default moviesSlice.reducer;

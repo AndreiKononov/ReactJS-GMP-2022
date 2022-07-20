@@ -1,0 +1,17 @@
+@import 'src/scss/variables';
+
+.page-not-found {
+  padding: 20px;
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .link {
+    color: $color_white;
+
+    &:hover {
+      color: $color_wild_watermelon;
+    }
+  }
+}

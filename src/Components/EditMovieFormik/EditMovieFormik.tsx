@@ -9,7 +9,7 @@ import { FormSelect } from '../FormSelect/FormSelect';
 import { validationSchema } from './validationSchema';
 import { createMovie, editMovie, fetchMovies } from '../../store/moviesReducer';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useMovies } from '../../hooks/useMovies';
+import { useQueryParams } from '../../hooks/useQueryParams';
 import { getMovieFromFormValue } from '../../utils/getMovieFromFormValue';
 import { AsyncSubmitStatus } from '../../models/AsyncSubmitStatus';
 import './EditMovie.scss';
@@ -33,7 +33,7 @@ function setInitialFormValue(movie: Movie | null): EditMovieFormValue {
 
 export const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
   const dispatch = useAppDispatch();
-  const { queryParams } = useMovies();
+  const routerQueryParams = useQueryParams();
 
   const inputIdPrefix = useId();
   const getIdFor = (fieldName: string): string => `${inputIdPrefix}_${fieldName}`;
@@ -46,7 +46,7 @@ export const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
 
     try {
       await dispatch(actionToDispatch).unwrap();
-      dispatch(fetchMovies(queryParams));
+      dispatch(fetchMovies(routerQueryParams));
       handleClose();
       setStatus(AsyncSubmitStatus.SUBMIT_SUCCESS);
     } catch (rejectedValueOrSerializedError) {

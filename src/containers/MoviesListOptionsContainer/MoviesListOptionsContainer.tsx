@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { GenreTogglePanel as FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { MoviesFound } from '../../components/MoviesFound/MoviesFound';
 import { SortPanel } from '../../components/SortPanel/SortPanel';
@@ -6,36 +7,48 @@ import { genres } from './genres';
 import { sortOptions } from './sortOptions';
 import { SelectValue } from '../../models/SelectValue';
 import { Genre } from '../../models/Genre';
-import { setFilter, setSortBy } from '../../store/moviesReducer';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useMovies } from '../../hooks/useMovies';
 import './MoviesListOptionsContainer.scss';
 
 export function MoviesListOptionsContainer() {
-  const { movies, queryParams } = useMovies();
-  const dispatch = useAppDispatch();
+  const { movies } = useMovies();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleGenreChange = (genre: Genre): void => {
-    dispatch(setFilter(genre.value));
+  const handleQueryParamChange = (selectedItem: SelectValue | Genre, paramName: 'genre' | 'sortBy'): void => {
+    const selectedValue: string = selectedItem.value;
+
+    if (selectedValue) {
+      searchParams.set(paramName, selectedValue);
+    } else {
+      searchParams.delete(paramName);
+    }
+
+    setSearchParams(searchParams);
   };
 
-  const handleSortByChange = (selectValue: SelectValue): void => {
-    dispatch(setSortBy(selectValue.value));
-  };
+  const getSortByValue = (value: string | null): SelectValue | null => {
+    if (!value) {
+      return null;
+    }
 
-  const getSortByValue = (value: string): SelectValue => {
     return sortOptions.find((option) => option.value === value)!;
   };
-
-  const memoizedFetchMoviesNumber = useMemo(() => movies.length, [movies]);
 
   return (
     <>
       <div className="options-panel">
-        <FilterPanel genres={genres} selectedGenre={queryParams.filter} handleSelect={handleGenreChange} />
-        <SortPanel sortOptions={sortOptions} sortByValue={getSortByValue(queryParams.sortBy)} handleSelect={handleSortByChange} />
+        <FilterPanel
+          genres={genres}
+          selectedGenre={searchParams.get('genre')}
+          handleSelect={(selectedItem) => handleQueryParamChange(selectedItem, 'genre')}
+        />
+        <SortPanel
+          sortOptions={sortOptions}
+          sortByValue={getSortByValue(searchParams.get('sortBy'))}
+          handleSelect={(selectedItem) => handleQueryParamChange(selectedItem, 'sortBy')}
+        />
       </div>
-      <MoviesFound numberOfMovies={memoizedFetchMoviesNumber} />
+      <MoviesFound numberOfMovies={movies.length} />
     </>
   );
 }

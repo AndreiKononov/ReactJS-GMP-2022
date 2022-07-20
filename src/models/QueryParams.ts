@@ -1,8 +1,7 @@
 export interface QueryParams {
-  sortBy: string;
+  sortBy: string | null;
   sortOrder: 'asc' | 'desc';
-  search: string;
+  search: string | null;
   searchBy: 'title' | 'genre';
-  filter: string;
-  limit: number;
+  filter: string | null;
 }

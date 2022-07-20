@@ -1,10 +1,9 @@
 import { QueryParams } from '../models/QueryParams';
 
 export const initialQueryParams: QueryParams = {
-  sortBy: 'release_date',
+  sortBy: null,
   sortOrder: 'desc',
-  search: '',
+  search: null,
   searchBy: 'title',
-  filter: '',
-  limit: 21,
+  filter: null,
 };

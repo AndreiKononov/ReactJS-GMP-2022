@@ -1,6 +1,6 @@
 import { Formik, FormikProps, Form, FormikHelpers } from 'formik';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useMovies } from '../../hooks/useMovies';
+import { useQueryParams } from '../../hooks/useQueryParams';
 import { AsyncSubmitStatus } from '../../models/AsyncSubmitStatus';
 import { deleteMovieById, fetchMovies } from '../../store/moviesReducer';
 import './DeleteMovieConfirm.scss';
@@ -14,13 +14,13 @@ interface DeleteMovieProps extends DeleteMovieFormValue {
 }
 
 export const DeleteMovieConfirm = ({ movieId, handleClose }: DeleteMovieProps) => {
-  const { queryParams } = useMovies();
   const dispatch = useAppDispatch();
+  const routerQueryParams = useQueryParams();
 
   const handleFormSubmit = async ({ movieId }, { setSubmitting, setStatus }: FormikHelpers<{ movieId: number }>) => {
     try {
       await dispatch(deleteMovieById(movieId)).unwrap();
-      dispatch(fetchMovies(queryParams));
+      dispatch(fetchMovies(routerQueryParams));
       handleClose();
       setStatus(AsyncSubmitStatus.SUBMIT_SUCCESS);
     } catch (rejectedValueOrSerializedError) {
