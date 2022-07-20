@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNotFound should match PageNotFound snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="page-not-found"
+  >
+    <h1
+      class="title"
+    >
+      Page not found
+    </h1>
+    <p>
+      <a
+        class="link"
+        href="/"
+      >
+        Go to the home page
+      </a>
+    </p>
+  </div>
+</DocumentFragment>
+`;

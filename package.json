@@ -11,19 +11,27 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.1",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-select": "^5.3.2",
     "react-redux": "^8.0.2",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start:prod": "cross-env NODE_ENV=production webpack serve --config webpack.config.prod.js --open",
     "start:dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.dev.js --open --hot",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.dev.js"
+    "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.dev.js",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
+    "test:coverage": "react-scripts test --watchAll=false --coverage"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
