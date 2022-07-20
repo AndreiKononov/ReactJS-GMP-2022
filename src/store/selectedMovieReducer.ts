@@ -8,7 +8,7 @@ interface SelectedMovieState {
   isError: boolean;
 }
 
-const initialState: SelectedMovieState = {
+export const selectedMovieInitialState: SelectedMovieState = {
   movie: null,
   isLoading: false,
   isError: false,
@@ -17,9 +17,9 @@ export const fetchMovieById = createAsyncThunk('toolkit/moviesReducer/fetchMovie
 
 const selectedMovieSlice = createSlice({
   name: 'tookit/moviesReducer',
-  initialState: initialState,
+  initialState: selectedMovieInitialState,
   reducers: {
-    resetSelectedMovie: () => initialState,
+    resetSelectedMovie: () => selectedMovieInitialState,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovieById.pending, (state: SelectedMovieState) => {
