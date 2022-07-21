@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddMovieBtn should match AddMovieBtn snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="add-movie-btn"
+  >
+    + Add Movie
+  </button>
+</DocumentFragment>
+`;
