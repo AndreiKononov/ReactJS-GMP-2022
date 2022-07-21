@@ -5,7 +5,7 @@ import { TextField } from '../TextField/TextField';
 
 import './SearchForm.scss';
 
-export function SearchForm() {
+export default function SearchForm() {
   const navigate = useNavigate();
   const { searchQuery } = useParams();
   const [searchParams] = useSearchParams();

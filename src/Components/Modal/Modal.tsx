@@ -11,7 +11,7 @@ interface ModalConfig {
 
 const modalRoot = document.getElementById('modal-container');
 
-export const Modal = ({ title, handleClose, children }: PropsWithChildren<ModalConfig>) => {
+const Modal = ({ title, handleClose, children }: PropsWithChildren<ModalConfig>) => {
   useEffect(() => {
     document.body.classList.add('no-scroll');
 
@@ -42,3 +42,5 @@ export const Modal = ({ title, handleClose, children }: PropsWithChildren<ModalC
 
   return ReactDOM.createPortal(modalLayout, modalRoot as HTMLElement);
 };
+
+export default Modal;

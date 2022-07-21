@@ -5,14 +5,14 @@ import { EditMovieFormik } from '../../components/EditMovieFormik/EditMovieFormi
 import { Header } from '../../components/Header/Header';
 import { Hero } from '../../components/Hero/Hero';
 import { Logo } from '../../components/Logo/Logo';
-import { Modal } from '../../components/Modal/Modal';
-import { MovieCardSelectedContainer } from '../../components/MovieCardSelectedContainer/MovieCardSelectedContainer';
-import { SearchForm } from '../../components/SearchForm/SearchForm';
+import Modal from '../../components/Modal/Modal';
+import MovieCardSelectedContainer from '../../components/MovieCardSelectedContainer/MovieCardSelectedContainer';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useSelectedMovie } from '../../hooks/useSelectedMovie';
 import { fetchMovieById, resetSelectedMovie } from '../../store/selectedMovieReducer';
 
-export function HeroContainer() {
+export default function HeroContainer() {
   const dispatch = useAppDispatch();
 
   const [searchParams] = useSearchParams();
