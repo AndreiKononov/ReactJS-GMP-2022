@@ -37,6 +37,7 @@
     "test": "react-scripts test --watchAll=false",
     "test:watch": "react-scripts test",
     "test:coverage": "react-scripts test --watchAll=false --coverage",
+    "test:e2e": "cypress open",
     "test:clearCache": "react-scripts test --clearCache"
   },
   "devDependencies": {
@@ -59,6 +60,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.9",
+    "cypress": "^10.3.1",
     "eslint": "^8.17.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
