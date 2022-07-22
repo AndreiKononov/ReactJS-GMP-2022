@@ -13,7 +13,7 @@ interface DeleteMovieProps extends DeleteMovieFormValue {
   handleClose: () => void;
 }
 
-export const DeleteMovieConfirm = ({ movieId, handleClose }: DeleteMovieProps) => {
+const DeleteMovieConfirm = ({ movieId, handleClose }: DeleteMovieProps) => {
   const dispatch = useAppDispatch();
   const routerQueryParams = useQueryParams();
 
@@ -47,3 +47,5 @@ export const DeleteMovieConfirm = ({ movieId, handleClose }: DeleteMovieProps) =
     </Formik>
   );
 };
+
+export default DeleteMovieConfirm;

@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { Movie } from '../../models/Movie';
-import { Modal } from '../Modal/Modal';
-import { DeleteMovieConfirm } from '../DeleteMovieConfirm/DeleteMovieConfirm';
-import { EditMovieFormik } from '../EditMovieFormik/EditMovieFormik';
+import Modal from '../Modal/Modal';
+import DeleteMovieConfirm from '../DeleteMovieConfirm/DeleteMovieConfirm';
+import EditMovieFormik from '../EditMovieFormik/EditMovieFormik';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import { handleImgOnError } from '../../utils/handleImgOnError';
@@ -61,7 +61,7 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   ) : null;
 
   const editMovieModal = movieToEdit ? (
-    <Modal title="Add Movie" handleClose={closeEditMovieModal}>
+    <Modal title="Edit Movie" handleClose={closeEditMovieModal}>
       <EditMovieFormik movie={movie} handleClose={closeEditMovieModal} />
     </Modal>
   ) : null;
@@ -84,7 +84,7 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
       <div className="movies-list-card-genres">
         <span>{joinGenres(genres)}</span>
       </div>
-      <button onClick={() => setIsContextMenuOpen(true)} className="context-menu-btn">
+      <button title="context-menu-button" onClick={() => setIsContextMenuOpen(true)} className="context-menu-btn">
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </button>
       <div className="movies-list-card-dropdown-wrapper">
@@ -102,4 +102,4 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   );
 }
 
-export const MoviesListCard = React.memo(MoviesListCardComponent);
+export default React.memo(MoviesListCardComponent);

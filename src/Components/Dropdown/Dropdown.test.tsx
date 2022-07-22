@@ -1,7 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Dropdown } from './Dropdown';
-
 const dropdownItems = [
   {
     id: 1,
@@ -14,10 +13,10 @@ const dropdownItems = [
 ];
 
 describe('Dropdown', () => {
-  it('should trigger handleClose on close button click', () => {
-    const handleClose = jest.fn();
-    const handleSelect = jest.fn();
+  const handleClose = jest.fn();
+  const handleSelect = jest.fn();
 
+  it('should trigger handleClose on close button click', () => {
     render(<Dropdown items={dropdownItems} handleClose={handleClose} handleSelect={handleSelect} />);
     userEvent.click(screen.getByRole('button'));
 
@@ -25,9 +24,6 @@ describe('Dropdown', () => {
   });
 
   it('should trigger handleSelect with id 1 on Edit click', () => {
-    const handleClose = jest.fn();
-    const handleSelect = jest.fn();
-
     render(<Dropdown items={dropdownItems} handleClose={handleClose} handleSelect={handleSelect} />);
     userEvent.click(screen.getByText('Edit'));
 
@@ -35,9 +31,6 @@ describe('Dropdown', () => {
   });
 
   it('should trigger handleSelect with id 2 on Delete click', () => {
-    const handleClose = jest.fn();
-    const handleSelect = jest.fn();
-
     render(<Dropdown items={dropdownItems} handleClose={handleClose} handleSelect={handleSelect} />);
     userEvent.click(screen.getByText('Delete'));
 

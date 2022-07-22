@@ -31,7 +31,8 @@
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.dev.js",
     "test": "react-scripts test --watchAll=false",
     "test:watch": "react-scripts test",
-    "test:coverage": "react-scripts test --watchAll=false --coverage"
+    "test:coverage": "react-scripts test --watchAll=false --coverage",
+    "test:clearCache": "react-scripts test --clearCache"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",

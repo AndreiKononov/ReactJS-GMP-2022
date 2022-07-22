@@ -10,7 +10,7 @@ interface IDropdownProps {
 
 export function Dropdown({ items, handleSelect, handleClose }: IDropdownProps) {
   return (
-    <div className="dropdown">
+    <div className="dropdown" role="menu">
       <ul>
         {items.map((item) => (
           <li key={item.id} className="dropdown-item" onClick={() => handleSelect(item.id)}>

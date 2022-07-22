@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AddMovieBtn } from '../../components/AddMovieBtn/AddMovieBtn';
-import { EditMovieFormik } from '../../components/EditMovieFormik/EditMovieFormik';
+import EditMovieFormik from '../../components/EditMovieFormik/EditMovieFormik';
 import { Header } from '../../components/Header/Header';
 import { Hero } from '../../components/Hero/Hero';
 import { Logo } from '../../components/Logo/Logo';

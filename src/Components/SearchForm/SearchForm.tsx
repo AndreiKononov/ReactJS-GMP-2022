@@ -11,10 +11,10 @@ export default function SearchForm() {
   const [searchParams] = useSearchParams();
   const inputIdPrefix = useId();
 
-  const handleSubmit = ({ searchValue }) => {
+  const handleSubmit = ({ searchValue }: { searchValue: string }) => {
     navigate(
       {
-        pathname: `/search/${searchValue ?? ''}`,
+        pathname: `/search/${searchValue.toLowerCase()}`,
         search: searchParams.toString(),
       },
       { replace: true }
@@ -24,7 +24,7 @@ export default function SearchForm() {
   return (
     <div className="searchForm-wrapper">
       <h1 className="searchForm-title">Find your movie</h1>
-      <Formik initialValues={{ searchValue: searchQuery }} onSubmit={handleSubmit}>
+      <Formik initialValues={{ searchValue: searchQuery || '' }} onSubmit={handleSubmit}>
         <Form className="searchForm">
           <TextField
             name="searchValue"
