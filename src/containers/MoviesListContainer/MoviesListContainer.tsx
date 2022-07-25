@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { ErrorBoundary } from '../../components/ErrorBoundary/ErrorBoundary';
-import { MoviesList } from '../../components/MoviesList/MoviesList';
+import MoviesList from '../../components/MoviesList/MoviesList';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { fetchMovies } from '../../store/moviesReducer';
 import { useMovies } from '../../hooks/useMovies';

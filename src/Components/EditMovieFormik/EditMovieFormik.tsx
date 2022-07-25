@@ -31,7 +31,7 @@ function setInitialFormValue(movie: Movie | null): EditMovieFormValue {
   };
 }
 
-export const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
+const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
   const dispatch = useAppDispatch();
   const routerQueryParams = useQueryParams();
 
@@ -81,3 +81,5 @@ export const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
     </Formik>
   );
 };
+
+export default EditMovieFormik;

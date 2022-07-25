@@ -37,4 +37,4 @@ function MovieCardSelectedContainerComponent({ movie, isLoading, isError }: Movi
   );
 }
 
-export const MovieCardSelectedContainer = React.memo(MovieCardSelectedContainerComponent);
+export default React.memo(MovieCardSelectedContainerComponent);

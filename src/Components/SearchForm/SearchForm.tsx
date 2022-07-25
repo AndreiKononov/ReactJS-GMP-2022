@@ -5,16 +5,16 @@ import { TextField } from '../TextField/TextField';
 
 import './SearchForm.scss';
 
-export function SearchForm() {
+export default function SearchForm() {
   const navigate = useNavigate();
   const { searchQuery } = useParams();
   const [searchParams] = useSearchParams();
   const inputIdPrefix = useId();
 
-  const handleSubmit = ({ searchValue }) => {
+  const handleSubmit = ({ searchValue }: { searchValue: string }) => {
     navigate(
       {
-        pathname: `/search/${searchValue ?? ''}`,
+        pathname: `/search/${searchValue.toLowerCase()}`,
         search: searchParams.toString(),
       },
       { replace: true }
@@ -24,7 +24,7 @@ export function SearchForm() {
   return (
     <div className="searchForm-wrapper">
       <h1 className="searchForm-title">Find your movie</h1>
-      <Formik initialValues={{ searchValue: searchQuery }} onSubmit={handleSubmit}>
+      <Formik initialValues={{ searchValue: searchQuery || '' }} onSubmit={handleSubmit}>
         <Form className="searchForm">
           <TextField
             name="searchValue"
