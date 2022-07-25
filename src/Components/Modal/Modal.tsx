@@ -11,7 +11,7 @@ interface ModalConfig {
 
 let Modal = ({ title, handleClose, children }) => <div>SSR mode</div>;
 
-if (process.browser) {
+if ((process as any).browser) {
   const modalRoot = document.getElementById('modal-container');
 
   Modal = ({ title, handleClose, children }: PropsWithChildren<ModalConfig>) => {
