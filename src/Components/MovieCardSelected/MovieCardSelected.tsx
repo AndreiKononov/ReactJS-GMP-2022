@@ -4,7 +4,7 @@ import { Movie } from '../../models/Movie';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import { handleImgOnError } from '../../utils/handleImgOnError';
-import './MovieCardSelected.scss';
+// import './MovieCardSelected.scss';
 
 interface MovieCardSelectedProps {
   movie: Movie;

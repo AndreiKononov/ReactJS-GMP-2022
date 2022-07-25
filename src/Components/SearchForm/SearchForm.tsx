@@ -2,8 +2,7 @@ import { useId } from 'react';
 import { Formik, Form } from 'formik';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { TextField } from '../TextField/TextField';
-
-import './SearchForm.scss';
+// import './SearchForm.scss';
 
 export default function SearchForm() {
   const navigate = useNavigate();

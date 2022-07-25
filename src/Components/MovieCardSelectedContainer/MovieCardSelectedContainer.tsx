@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '../Logo/Logo';
 import { Movie } from '../../models/Movie';
 import { MovieCardSelected } from '../MovieCardSelected/MovieCardSelected';
-import './MovieCardSelectedContainer.scss';
+// import './MovieCardSelectedContainer.scss';
 
 interface MovieCardSelectedContainerProps {
   movie: Movie | null;

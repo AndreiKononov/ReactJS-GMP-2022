@@ -2,45 +2,48 @@ import ReactDOM from 'react-dom';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropsWithChildren, useEffect } from 'react';
-import './Modal.scss';
+// import './Modal.scss';
 
 interface ModalConfig {
   title: string;
   handleClose: () => void;
 }
 
-const modalRoot = document.getElementById('modal-container');
+let Modal = ({ title, handleClose, children }) => <div>SSR mode</div>;
 
-const Modal = ({ title, handleClose, children }: PropsWithChildren<ModalConfig>) => {
-  useEffect(() => {
-    document.body.classList.add('no-scroll');
+if (process.browser) {
+  const modalRoot = document.getElementById('modal-container');
 
-    return () => {
-      document.body.classList.remove('no-scroll');
-    };
-  }, []);
+  Modal = ({ title, handleClose, children }: PropsWithChildren<ModalConfig>) => {
+    useEffect(() => {
+      document.body.classList.add('no-scroll');
 
-  const closeBtn = (
-    <button onClick={() => handleClose()} className="modal-close-btn">
-      <FontAwesomeIcon icon={faClose} />
-    </button>
-  );
+      return () => {
+        document.body.classList.remove('no-scroll');
+      };
+    }, []);
 
-  const modalLayout = (
-    <div className="modal-overlay">
-      <div className="modal">
-        {closeBtn}
+    const closeBtn = (
+      <button onClick={() => handleClose()} className="modal-close-btn">
+        <FontAwesomeIcon icon={faClose} />
+      </button>
+    );
 
-        <div className="modal-header">
-          <span className="modal-header-title">{title}</span>
+    const modalLayout = (
+      <div className="modal-overlay">
+        <div className="modal">
+          {closeBtn}
+
+          <div className="modal-header">
+            <span className="modal-header-title">{title}</span>
+          </div>
+
+          <div className="modal-body">{children}</div>
         </div>
-
-        <div className="modal-body">{children}</div>
       </div>
-    </div>
-  );
+    );
 
-  return ReactDOM.createPortal(modalLayout, modalRoot as HTMLElement);
-};
-
+    return ReactDOM.createPortal(modalLayout, modalRoot as HTMLElement);
+  };
+}
 export default Modal;
