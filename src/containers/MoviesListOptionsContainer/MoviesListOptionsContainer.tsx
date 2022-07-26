@@ -22,7 +22,14 @@ export function MoviesListOptionsContainer() {
       delete router.query[paramName];
     }
 
-    router.push(router);
+    router.push(
+      {
+        pathname: router.pathname,
+        query: router.query,
+      },
+      undefined,
+      { shallow: true }
+    );
   };
 
   const getSortByValue = (value: string | null): SelectValue | null => {

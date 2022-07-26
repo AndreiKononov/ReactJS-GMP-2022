@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { AddMovieBtn } from '../../components/AddMovieBtn/AddMovieBtn';
 import EditMovieFormik from '../../components/EditMovieFormik/EditMovieFormik';
@@ -10,6 +10,7 @@ import MovieCardSelectedContainer from '../../components/MovieCardSelectedContai
 import SearchForm from '../../components/SearchForm/SearchForm';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useSelectedMovie } from '../../hooks/useSelectedMovie';
+import { useEffectAfterFirstMount } from '../../hooks/useEffectAfterFirstMount';
 import { fetchMovieById, resetSelectedMovie } from '../../store/selectedMovieReducer';
 
 export default function HeroContainer() {
@@ -21,13 +22,13 @@ export default function HeroContainer() {
 
   const { movie: selectedMovie, isLoading: isSelectedMovieLoading, isError: isSelectedMovieError } = useSelectedMovie();
 
-  // useEffect(() => {
-  //   if (selectedMovieId) {
-  //     dispatch(fetchMovieById(selectedMovieId));
-  //   } else {
-  //     dispatch(resetSelectedMovie());
-  //   }
-  // }, [selectedMovieId, dispatch]);
+  useEffectAfterFirstMount(() => {
+    if (selectedMovieId) {
+      dispatch(fetchMovieById(selectedMovieId as string));
+    } else {
+      dispatch(resetSelectedMovie());
+    }
+  }, [selectedMovieId, dispatch]);
 
   const [shouldShowAddMovieModal, setShouldShowAddMovieModal] = useState(false);
 

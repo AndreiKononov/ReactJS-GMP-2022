@@ -45,7 +45,7 @@ const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
     const actionToDispatch = isEditing ? editMovie({ ...formMovie, id: movie.id }) : createMovie(formMovie);
 
     try {
-      await dispatch(actionToDispatch).unwrap();
+      await dispatch(actionToDispatch)
       dispatch(fetchMovies(routerQueryParams));
       handleClose();
       setStatus(AsyncSubmitStatus.SUBMIT_SUCCESS);

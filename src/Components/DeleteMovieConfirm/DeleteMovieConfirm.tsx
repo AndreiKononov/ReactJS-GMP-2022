@@ -19,7 +19,7 @@ const DeleteMovieConfirm = ({ movieId, handleClose }: DeleteMovieProps) => {
 
   const handleFormSubmit = async ({ movieId }, { setSubmitting, setStatus }: FormikHelpers<{ movieId: number }>) => {
     try {
-      await dispatch(deleteMovieById(movieId)).unwrap();
+      await dispatch(deleteMovieById(movieId))
       dispatch(fetchMovies(routerQueryParams));
       handleClose();
       setStatus(AsyncSubmitStatus.SUBMIT_SUCCESS);

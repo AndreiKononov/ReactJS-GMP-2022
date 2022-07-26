@@ -1,4 +1,3 @@
-import React from 'react';
 import Head from 'next/head';
 import '../src/index.scss';
 import '../src/App.scss';
@@ -33,11 +32,10 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Movie App</title>
       </Head>
-      <React.StrictMode>
-        <div className="App">
-          <Component {...pageProps} />
-        </div>
-      </React.StrictMode>
+      <div id="modal-container"></div>
+      <div className="App">
+        <Component {...pageProps} />
+      </div>
     </>
   );
 }
