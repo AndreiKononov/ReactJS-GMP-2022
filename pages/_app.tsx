@@ -1,7 +1,5 @@
-import App, { AppContext } from 'next/app';
+import React from 'react';
 import Head from 'next/head';
-import { Provider } from 'react-redux';
-import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import '../src/index.scss';
 import '../src/App.scss';
 import '../src/components/Logo/Logo.scss';
@@ -24,43 +22,24 @@ import '../src/components/MovieListCard/MovieListCard.scss';
 import '../src/components/MoviesFound/MoviesFound.scss';
 import '../src/components/MoviesList/MoviesList.scss';
 import '../src/components/SortPanel/SortPanel.scss';
+import '../src/components/PageNotFound/PageNotFound.scss';
 import '../src/containers/MoviesListOptionsContainer/MoviesListOptionsContainer.scss';
-import { initialiseStore } from '../src/store';
-import { fetchMovies } from '../src/store/moviesReducer';
+import { wrapper } from '../src/store';
 
 function MyApp({ Component, pageProps }) {
-  console.log('HERE!!');
-  console.log(pageProps.initialState.movies.movies.length);
-  const store = initialiseStore(pageProps.initialState);
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Movie App</title>
       </Head>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <React.StrictMode>
+        <div className="App">
+          <Component {...pageProps} />
+        </div>
+      </React.StrictMode>
     </>
   );
 }
 
-MyApp.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await App.getInitialProps(appContext);
-  const reduxStore = initialiseStore({});
-  console.log(reduxStore.getState());
-  // setupListeners(reduxStore.dispatch);
-  const { dispatch } = reduxStore;
-  const res = await dispatch(fetchMovies());
-
-  // dispatch(setStars({ stars: json.stars }));
-
-  appProps.pageProps = {
-    ...appProps.pageProps,
-    initialState: reduxStore.getState(),
-  };
-
-  return appProps;
-};
-
-export default MyApp;
+export default wrapper.withRedux(MyApp);

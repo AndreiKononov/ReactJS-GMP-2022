@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { PageNotFound } from './PageNotFound';
+import { PageNotFound } from '../../../pages/404';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('PageNotFound', () => {

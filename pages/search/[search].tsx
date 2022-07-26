@@ -1,4 +1,4 @@
-import * as fromSharedSearch from './shared-search';
+import * as fromSharedSearch from '../shared-search';
 
 export const getServerSideProps = fromSharedSearch.getServerSideProps;
 

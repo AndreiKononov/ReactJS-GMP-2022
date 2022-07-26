@@ -71,6 +71,7 @@
     "image-webpack-loader": "^8.1.0",
     "mini-css-extract-plugin": "^2.6.0",
     "next": "^12.1.6",
+    "next-redux-wrapper": "^7.0.5",
     "node-sass": "^7.0.1",
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.0",
