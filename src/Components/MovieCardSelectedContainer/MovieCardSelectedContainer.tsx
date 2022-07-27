@@ -26,7 +26,7 @@ function MovieCardSelectedContainerComponent({ movie, isLoading, isError }: Movi
       undefined,
       { shallow: true }
     );
-  }, [router.query.movie]);
+  }, [router]);
 
   return (
     <div className="movie-card-selected-container">

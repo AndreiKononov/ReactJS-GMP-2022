@@ -1,13 +1,13 @@
 describe('Search movies', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/');
+    cy.visit('http://localhost:3000/');
   });
 
-  it('redirects to http://localhost:8080/search from /', () => {
+  it('redirects to http://localhost:3000/search from /', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/search');
       expect(loc.search).to.eq('');
-      expect(loc.href).to.eq('http://localhost:8080/search');
+      expect(loc.href).to.eq('http://localhost:3000/search');
     });
   });
 
@@ -43,7 +43,7 @@ describe('Search movies', () => {
         cy.location().should((loc) => {
           expect(loc.pathname).to.eq('/search/moon');
           expect(loc.search).to.eq('');
-          expect(loc.href).to.eq('http://localhost:8080/search/moon');
+          expect(loc.href).to.eq('http://localhost:3000/search/moon');
         });
       });
   });

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 // import './PageNotFound.scss';
 
-export const PageNotFound = () => (
+const PageNotFound = () => (
   <div className="page-not-found">
     <h1 className="title">Page not found</h1>
     <p>
@@ -11,3 +11,5 @@ export const PageNotFound = () => (
     </p>
   </div>
 );
+
+export default PageNotFound;

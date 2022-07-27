@@ -1,4 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 import SearchForm from './SearchForm';
 
@@ -38,7 +39,7 @@ describe('SearchForm', () => {
           pathname: `/search/[search]`,
           query: {
             sortBy: 'release_date',
-            search: 'Moon',
+            search: 'moon',
           },
         },
         undefined,
