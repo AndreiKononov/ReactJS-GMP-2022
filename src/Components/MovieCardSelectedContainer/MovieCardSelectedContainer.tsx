@@ -18,7 +18,14 @@ function MovieCardSelectedContainerComponent({ movie, isLoading, isError }: Movi
 
   const handleGoToSearch = useCallback(() => {
     delete router.query.movie;
-    router.push(router, undefined, { shallow: true });
+    router.push(
+      {
+        pathname: router.pathname,
+        query: router.query,
+      },
+      undefined,
+      { shallow: true }
+    );
   }, [router.query.movie]);
 
   return (

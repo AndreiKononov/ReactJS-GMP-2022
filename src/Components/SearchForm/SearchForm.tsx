@@ -12,7 +12,7 @@ export default function SearchForm() {
   const handleSubmit = ({ searchValue }: { searchValue: string }) => {
     if (searchValue) {
       router.pathname = '/search/[search]';
-      router.query.search = searchValue;
+      router.query.search = searchValue.toLocaleLowerCase();
     } else {
       router.pathname = '/search';
       delete router.query.search;

@@ -56,6 +56,8 @@ describe('Search movies', () => {
         cy.get('button').should('contain.text', 'Search').should('be.enabled').click();
       });
 
+    cy.get('h2').should('contain.text', 'Loading...');
+
     cy.get('ul.movies-list')
       .should('be.visible')
       .within(() => {

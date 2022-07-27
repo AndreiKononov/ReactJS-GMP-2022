@@ -47,7 +47,14 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
 
   const handleMovieSelect = useCallback(() => {
     router.query.movie = movie.id.toString();
-    router.push(router, undefined, { shallow: true });
+    router.push(
+      {
+        pathname: router.pathname,
+        query: router.query,
+      },
+      undefined,
+      { shallow: true, scroll: true }
+    );
   }, [movie.id]);
 
   const closeEditMovieModal = () => setMovieToEdit(false);

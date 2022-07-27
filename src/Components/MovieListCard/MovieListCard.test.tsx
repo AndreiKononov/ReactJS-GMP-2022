@@ -18,89 +18,105 @@ jest.mock('../../components/DeleteMovieConfirm/DeleteMovieConfirm', () => {
   return () => <div>Mocked Delete Movie Confirm Form</div>;
 });
 
-xdescribe('MoviesListCard', () => {
-  it('', () => {});
-  // const movie = movies[0];
-  //
-  // it('should render a movie list card with provided movie title and image', () => {
-  //   const { getByText, getByAltText } = renderMovieListCardInRouter();
-  //
-  //   expect(getByText(movie.title)).toBeInTheDocument();
-  //   expect(getByAltText(`${movie.title} poster`)).toBeInTheDocument();
-  // });
-  //
-  // it('should display dropdown on context menu button click', () => {
-  //   const { getByTitle, getByRole } = renderMovieListCardInRouter();
-  //
-  //   const contextMenuBtn = getByTitle('context-menu-button');
-  //   expect(contextMenuBtn).toBeInTheDocument();
-  //
-  //   userEvent.click(contextMenuBtn);
-  //
-  //   const dropdown = getByRole('menu');
-  //   expect(dropdown).toBeInTheDocument();
-  // });
-  //
-  // it('should display Edie Movie Modal on dropdown edit option select', () => {
-  //   const { getByTitle, getByRole, getByText } = renderMovieListCardInRouter();
-  //
-  //   const contextMenuBtn = getByTitle('context-menu-button');
-  //   expect(contextMenuBtn).toBeInTheDocument();
-  //
-  //   userEvent.click(contextMenuBtn);
-  //
-  //   const dropdown = getByRole('menu');
-  //   expect(dropdown).toBeInTheDocument();
-  //
-  //   const editOption = getByText('Edit');
-  //   expect(editOption).toBeInTheDocument();
-  //
-  //   userEvent.click(editOption);
-  //
-  //   const editModal = getByText(/Edit Movie/i);
-  //   expect(editModal).toBeInTheDocument();
-  // });
-  //
-  // it('should display Delete Movie Modal on dropdown delete option select', () => {
-  //   const { getByTitle, getByRole, getByText } = renderMovieListCardInRouter();
-  //
-  //   const contextMenuBtn = getByTitle('context-menu-button');
-  //   expect(contextMenuBtn).toBeInTheDocument();
-  //
-  //   userEvent.click(contextMenuBtn);
-  //
-  //   const dropdown = getByRole('menu');
-  //   expect(dropdown).toBeInTheDocument();
-  //
-  //   const deleteOption = getByText('Delete');
-  //   expect(deleteOption).toBeInTheDocument();
-  //
-  //   userEvent.click(deleteOption);
-  //
-  //   const deleteModal = getByText(/Delete Movie/i);
-  //   expect(deleteModal).toBeInTheDocument();
-  // });
-  //
-  // it('should set movie queryParam and scroll to top on movie select', () => {
-  //   const scrollSpy = jest.spyOn(window, 'scrollTo').mockImplementation();
-  //
-  //   const { getByAltText } = renderMovieListCardInRouter();
-  //
-  //   const movieImg = getByAltText(`${movie.title} poster`);
-  //   expect(movieImg).toBeInTheDocument();
-  //
-  //   userEvent.click(movieImg);
-  //
-  //   const movieQueryParam = new URLSearchParams(window.location.search).get('movie');
-  //   expect(movieQueryParam).toBe(movie.id.toString());
-  //   expect(scrollSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
-  // });
-  //
-  // function renderMovieListCardInRouter() {
-  //   return render(
-  //     <BrowserRouter>
-  //       <MovieListCard movie={movie} />
-  //     </BrowserRouter>
-  //   );
-  // }
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+
+describe('MoviesListCard', () => {
+  const movie = movies[0];
+  const mockedPush = jest.fn();
+
+  beforeEach(() => {
+    useRouter.mockImplementationOnce(() => ({
+      pathname: '/search',
+      query: { sortBy: 'release_date', genre: 'action' },
+      push: mockedPush,
+    }));
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should render a movie list card with provided movie title and image', () => {
+    const { getByText, getByAltText } = renderMovieListCard();
+
+    expect(getByText(movie.title)).toBeInTheDocument();
+    expect(getByAltText(`${movie.title} poster`)).toBeInTheDocument();
+  });
+
+  it('should display dropdown on context menu button click', () => {
+    const { getByTitle, getByRole } = renderMovieListCard();
+
+    const contextMenuBtn = getByTitle('context-menu-button');
+    expect(contextMenuBtn).toBeInTheDocument();
+
+    userEvent.click(contextMenuBtn);
+
+    const dropdown = getByRole('menu');
+    expect(dropdown).toBeInTheDocument();
+  });
+
+  it('should display Edit Movie Modal on dropdown edit option select', () => {
+    const { getByTitle, getByRole, getByText } = renderMovieListCard();
+
+    const contextMenuBtn = getByTitle('context-menu-button');
+    expect(contextMenuBtn).toBeInTheDocument();
+
+    userEvent.click(contextMenuBtn);
+
+    const dropdown = getByRole('menu');
+    expect(dropdown).toBeInTheDocument();
+
+    const editOption = getByText('Edit');
+    expect(editOption).toBeInTheDocument();
+
+    userEvent.click(editOption);
+
+    const editModal = getByText(/Edit Movie/i);
+    expect(editModal).toBeInTheDocument();
+  });
+
+  it('should display Delete Movie Modal on dropdown delete option select', () => {
+    const { getByTitle, getByRole, getByText } = renderMovieListCard();
+
+    const contextMenuBtn = getByTitle('context-menu-button');
+    expect(contextMenuBtn).toBeInTheDocument();
+
+    userEvent.click(contextMenuBtn);
+
+    const dropdown = getByRole('menu');
+    expect(dropdown).toBeInTheDocument();
+
+    const deleteOption = getByText('Delete');
+    expect(deleteOption).toBeInTheDocument();
+
+    userEvent.click(deleteOption);
+
+    const deleteModal = getByText(/Delete Movie/i);
+    expect(deleteModal).toBeInTheDocument();
+  });
+
+  it('should set movie query param and trigger scroll to top on movie select', () => {
+    const { getByAltText } = renderMovieListCard();
+
+    const movieImg = getByAltText(`${movie.title} poster`);
+    expect(movieImg).toBeInTheDocument();
+    userEvent.click(movieImg);
+
+    expect(mockedPush).toHaveBeenCalledWith(
+      {
+        pathname: `/search`,
+        query: {
+          sortBy: 'release_date',
+          genre: 'action',
+          movie: movie.id.toString(),
+        },
+      },
+      undefined,
+      { shallow: true, scroll: true }
+    );
+  });
+
+  function renderMovieListCard() {
+    return render(<MovieListCard movie={movie} />);
+  }
 });

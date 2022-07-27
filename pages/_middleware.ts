@@ -9,5 +9,12 @@ export async function middleware(req) {
     return NextResponse.redirect(url);
   }
 
+  if (pathname === '/shared-search') {
+    const url = req.nextUrl.clone();
+    url.pathname = '/search';
+
+    return NextResponse.redirect(url);
+  }
+
   return NextResponse.next();
 }
