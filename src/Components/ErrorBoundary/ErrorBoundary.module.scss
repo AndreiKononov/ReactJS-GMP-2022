@@ -1,8 +1,8 @@
 @import 'src/scss/variables';
 
-.error-boundary {
+.errorBoundary {
   color: $color_white;
-  border: 1px solid red;
+  border: 1px solid $color_red;
   font-weight: 500;
   padding: 10px;
 }

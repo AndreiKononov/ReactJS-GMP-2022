@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-// import './ErrorBoundary.scss';
+import styles from './ErrorBoundary.module.scss';
 
 type ErrorBoundaryProps = PropsWithChildren<{
   componentName: string;
@@ -23,7 +23,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     const { componentName, children } = this.props;
 
     if (this.state.hasError) {
-      return <h2 className="error-boundary">Something went wrong with {componentName}!</h2>;
+      return <h2 className={styles.errorBoundary}>Something went wrong with {componentName}!</h2>;
     }
 
     return children;

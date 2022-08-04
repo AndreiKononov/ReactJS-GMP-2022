@@ -1,4 +1,8 @@
 import { useField } from 'formik';
+import inputStyles from '../../scss/components/form-input.module.scss';
+import textAreaStyles from '../../scss/components/form-textarea.module.scss';
+import labelStyles from '../../scss/components/form-label.module.scss';
+import errorStyles from '../../scss/components/form-error.module.scss';
 
 interface TextInputProps {
   id: string;
@@ -12,20 +16,20 @@ export const TextField = ({ label, textarea, ...props }: TextInputProps) => {
   const [fieldProps, fieldMeta] = useField(props);
 
   return (
-    <div className="form-field">
+    <div>
       {label && (
-        <label htmlFor={props.id || props.name} className="form-label">
+        <label htmlFor={props.id || props.name} className={labelStyles.formLabel}>
           {label}
         </label>
       )}
 
       {!textarea ? (
-        <input className="form-input" {...fieldProps} {...props} />
+        <input className={inputStyles.formInput} {...fieldProps} {...props} />
       ) : (
-        <textarea className="form-textarea" {...fieldProps} {...props} />
+        <textarea className={textAreaStyles.formTextarea} {...fieldProps} {...props} />
       )}
 
-      {fieldMeta.touched && fieldMeta.error ? <div className="form-error">{fieldMeta.error}</div> : null}
+      {fieldMeta.touched && fieldMeta.error ? <div className={errorStyles.formError}>{fieldMeta.error}</div> : null}
     </div>
   );
 };

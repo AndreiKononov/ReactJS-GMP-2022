@@ -1,10 +1,10 @@
 @import 'src/scss/variables';
 
-.confirm-modal {
+.confirmModal {
   display: flex;
   flex-direction: column;
 
-  .confirm-text {
+  .confirmText {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
@@ -12,7 +12,7 @@
     padding-bottom: 52px;
   }
 
-  .confirm-btn {
+  .confirmBtn {
     min-width: 180px;
     width: 180px;
     align-self: flex-end;

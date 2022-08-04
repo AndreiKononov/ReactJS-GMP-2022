@@ -6,7 +6,7 @@
   padding: 0 #{$layout-side-padding};
   background-image: url('../../public/img/header.png');
 
-  .hero-overlay {
+  .heroOverlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,7 +15,7 @@
     background-color: rgba($color-black, 0.5);
   }
 
-  .hero-content {
+  .heroContent {
     position: absolute;
     top: 0;
     left: 0;

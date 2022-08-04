@@ -1,32 +1,32 @@
 @import 'src/scss/variables';
 
-.movie-card-selected {
+.movieCardSelected {
   display: flex;
   justify-content: space-between;
   position: relative;
   margin-top: 27px;
 
-  .image-container {
+  .imageContainer {
     min-width: 320px;
 
-    .movie-card-selected-image {
+    .movieCardSelectedImage {
       max-width: 320px;
       object-fit: cover;
     }
   }
 
-  .movie-card-selected-content {
+  .movieCardSelectedContent {
     margin-left: 58px;
     text-align: left;
     flex-grow: 1;
 
-    .movie-card-selected-content-header {
+    .movieCardSelectedContentHeader {
       display: flex;
       justify-content: flex-start;
       align-self: center;
       margin-bottom: 4px;
 
-      .movie-card-selected-title {
+      .movieCardSelectedTitle {
         font-weight: 300;
         font-size: 40px;
         line-height: 49px;
@@ -36,7 +36,7 @@
         color: $color_white;
       }
 
-      .movie-card-selected-rating {
+      .movieCardSelectedRating {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -55,14 +55,14 @@
       }
     }
 
-    .movie-card-selected-genres {
+    .movieCardSelectedGenres {
       font-weight: 500;
       font-size: 14px;
       line-height: 17px;
       color: rgba($color_white, 0.5);
     }
 
-    .movie-card-selected-info {
+    .movieCardSelectedInfo {
       margin-top: 30px;
       font-weight: 300;
       font-size: 24px;
@@ -74,7 +74,7 @@
       }
     }
 
-    .movie-card-selected-overview {
+    .movieCardSelectedOverview {
       margin-top: 30px;
       font-weight: 300;
       font-size: 20px;

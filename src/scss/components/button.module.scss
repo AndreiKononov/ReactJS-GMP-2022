@@ -1,6 +1,6 @@
 @import 'src/scss/variables';
 
-.app-btn {
+.appBtn {
   min-width: 180px;
   height: 57px;
   color: $color_white;
@@ -28,7 +28,7 @@
   }
 }
 
-.app-btn-reverse {
+.appBtnReverse {
   color: $color_wild_watermelon;
   border: 1.5px solid $color_wild_watermelon;
   background-color: $color_nero;

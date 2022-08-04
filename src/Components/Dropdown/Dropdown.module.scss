@@ -8,7 +8,7 @@
   box-shadow: 0 0 2px rgba($color_black, 0.1);
   border-radius: 4px;
 
-  .dropdown-item {
+  .dropdownItem {
     color: rgba($color_white, 0.8);
     padding: 6px 14px 6px 23px;
     font-weight: 500;
@@ -22,7 +22,7 @@
     }
   }
 
-  .dropdown-close-btn {
+  .dropdownCloseBtn {
     position: absolute;
     top: 2px;
     right: 7px;

@@ -7,7 +7,7 @@ import { sortOptions } from './sortOptions';
 import { SelectValue } from '../../models/SelectValue';
 import { Genre } from '../../models/Genre';
 import { useMovies } from '../../hooks/useMovies';
-// import './MoviesListOptionsContainer.scss';
+import styles from './MoviesListOptionsContainer.module.scss';
 
 export function MoviesListOptionsContainer() {
   const { movies } = useMovies();
@@ -42,7 +42,7 @@ export function MoviesListOptionsContainer() {
 
   return (
     <>
-      <div className="options-panel">
+      <div className={styles.optionsPanel}>
         <FilterPanel
           genres={genres}
           selectedGenre={router.query.genre as string}

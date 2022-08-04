@@ -1,12 +1,12 @@
-.edit-movie-form {
+.editMovieForm{
   max-width: 856px;
 
-  .form-fields {
+  .formFields {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 
-    > .form-field {
+    > .div {
       margin-bottom: 30px;
 
       &:last-child {
@@ -14,24 +14,24 @@
         margin: 0;
       }
     }
-  
+
     > *:nth-child(2n+1) {
       width: 525px;
       margin-right: 30px;
     }
-  
+
     > *:nth-child(2n) {
       width: 301px;
     }
   }
 
-  .edit-movie-form-actions {
+  .editMovieFormActions {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     margin-top: 60px;
 
-    > .app-btn:first-child {
+    > button:first-child {
       margin-right: 13px;
     }
   }

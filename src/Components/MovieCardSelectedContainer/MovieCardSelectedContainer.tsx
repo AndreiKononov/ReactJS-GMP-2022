@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '../Logo/Logo';
 import { Movie } from '../../models/Movie';
 import { MovieCardSelected } from '../MovieCardSelected/MovieCardSelected';
-// import './MovieCardSelectedContainer.scss';
+import styles from './MovieCardSelectedContainer.module.scss';
 
 interface MovieCardSelectedContainerProps {
   movie: Movie | null;
@@ -29,10 +29,10 @@ function MovieCardSelectedContainerComponent({ movie, isLoading, isError }: Movi
   }, [router]);
 
   return (
-    <div className="movie-card-selected-container">
-      <div className="movie-card-selected-container-header">
+    <div className={styles.movieCardSelectedContainer}>
+      <div className={styles.movieCardSelectedContainerHeader}>
         <Logo />
-        <button onClick={handleGoToSearch} className="movie-card-selected-search-btn">
+        <button onClick={handleGoToSearch} className={styles.movieCardSelectedSearchBtn}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </div>

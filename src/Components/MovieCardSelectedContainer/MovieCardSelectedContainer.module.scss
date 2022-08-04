@@ -1,16 +1,16 @@
 @import 'src/scss/variables';
 
-.movie-card-selected-container {
+.movieCardSelectedContainer {
   padding: 35px 60px 30px 60px;
   background-color: $color_nero;
   min-height: 500px;
 
-  .movie-card-selected-container-header {
+  .movieCardSelectedContainerHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .movie-card-selected-search-btn {
+    .movieCardSelectedSearchBtn {
       background: transparent;
       border: none;
       color: $color_wild_watermelon;

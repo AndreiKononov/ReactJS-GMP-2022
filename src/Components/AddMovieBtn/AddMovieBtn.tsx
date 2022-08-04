@@ -1,4 +1,4 @@
-// import './AddMovieBtn.scss';
+import styles from './AddMovieBtn.module.scss';
 
 interface AddMovieBtnProps {
   handleClick: () => void;
@@ -6,7 +6,7 @@ interface AddMovieBtnProps {
 
 export function AddMovieBtn({handleClick}: AddMovieBtnProps) {
   return (
-    <button className="add-movie-btn" onClick={handleClick}>
+    <button className={styles.addMovieBtn} onClick={handleClick}>
       + Add Movie
     </button>
   );
