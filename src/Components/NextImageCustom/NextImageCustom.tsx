@@ -6,6 +6,7 @@ export const NextImageCustom = ({ alt, ...props }) => {
 
   return (
     <Image
+      unoptimized
       {...props}
       alt={alt}
       src={src}
