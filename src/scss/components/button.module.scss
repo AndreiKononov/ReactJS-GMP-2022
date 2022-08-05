@@ -31,7 +31,7 @@
 .appBtnReverse {
   color: $color_wild_watermelon;
   border: 1.5px solid $color_wild_watermelon;
-  background-color: $color_nero;
+  background-color: transparent;
 
   &:hover {
     background-color: lighten($color_nero, 5%);

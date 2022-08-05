@@ -2,14 +2,12 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import MoviesListCard from '../components/MovieListCard/MovieListCard';
 import { movies } from '../mocks/movies';
+import { withDarkBg } from '../../.storybook/decorators';
 
 export default {
-  title: 'MoviesListCard',
+  title: 'Movies List Card',
   component: MoviesListCard,
-  argTypes: {
-    handleSelect: { action: true },
-    handleClose: { action: true },
-  },
+  decorators: [withDarkBg],
 } as ComponentMeta<typeof MoviesListCard>;
 
 const Template: ComponentStory<typeof MoviesListCard> = (args) => <MoviesListCard {...args} />;

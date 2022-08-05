@@ -1,3 +1,4 @@
+import { RouterContext } from 'next/dist/shared/lib/router-context';
 import '!style-loader!css-loader!sass-loader!../src/index.scss';
 
 export const parameters = {
@@ -7,5 +8,9 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+  layout: 'fullscreen',
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 };

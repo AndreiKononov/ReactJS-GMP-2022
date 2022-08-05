@@ -1,11 +1,13 @@
 import React from 'react';
+import { Formik } from 'formik';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { TextField } from '../components/TextField/TextField';
-import { Formik } from 'formik';
+import { withDarkBg } from '../../.storybook/decorators';
 
 export default {
   title: 'TextField',
   component: TextField,
+  decorators: [withDarkBg],
 } as ComponentMeta<typeof TextField>;
 
 const Template: ComponentStory<typeof TextField> = (args) => (
