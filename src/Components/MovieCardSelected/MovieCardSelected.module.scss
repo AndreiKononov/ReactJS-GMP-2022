@@ -1,0 +1,85 @@
+@import 'src/scss/variables';
+
+.movieCardSelected {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 27px;
+
+  .imageContainer {
+    min-width: 320px;
+
+    .movieCardSelectedImage {
+      max-width: 320px;
+      object-fit: cover;
+    }
+  }
+
+  .movieCardSelectedContent {
+    margin-left: 58px;
+    text-align: left;
+    flex-grow: 1;
+
+    .movieCardSelectedContentHeader {
+      display: flex;
+      justify-content: flex-start;
+      align-self: center;
+      margin-bottom: 4px;
+
+      .movieCardSelectedTitle {
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 49px;
+        text-align: left;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: $color_white;
+      }
+
+      .movieCardSelectedRating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        text-transform: uppercase;
+        color: $color_white;
+        width: 60px;
+        min-width: 60px;
+        height: 60px;
+        border: 1px solid $color_white;
+        border-radius: 30px;
+        margin-left: 25px;
+      }
+    }
+
+    .movieCardSelectedGenres {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: rgba($color_white, 0.5);
+    }
+
+    .movieCardSelectedInfo {
+      margin-top: 30px;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 29px;
+      color: $color_wild_watermelon;
+
+      > span:last-child {
+        margin-left: 50px;
+      }
+    }
+
+    .movieCardSelectedOverview {
+      margin-top: 30px;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 24px;
+      color: rgba($color_white, 0.5);
+    }
+  }
+}

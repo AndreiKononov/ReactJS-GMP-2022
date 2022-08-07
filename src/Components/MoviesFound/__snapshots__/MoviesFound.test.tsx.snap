@@ -3,10 +3,10 @@
 exports[`MoviesFound should match MoviesFound snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="movies-found"
+    class="moviesFound"
   >
     <span
-      class="movies-found-value"
+      class="moviesFoundValue"
     >
       5
     </span>

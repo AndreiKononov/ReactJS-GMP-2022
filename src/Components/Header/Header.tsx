@@ -1,4 +1,4 @@
 import { PropsWithChildren } from 'react';
-// import './Header.scss';
+import styles from './Header.module.scss';
 
-export const Header = ({ children }: PropsWithChildren<{}>) => <header className="header">{children}</header>;
+export const Header = ({ children }: PropsWithChildren<{}>) => <header className={styles.header}>{children}</header>;

@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react';
-// import './Hero.scss';
+import styles from './Hero.module.scss';
 
 export function Hero({ children }: PropsWithChildren<{}>) {
   return (
-    <div className="hero">
-      <div className="hero-overlay"></div>
-      <div className="hero-content">{children}</div>
+    <div className={styles.hero}>
+      <div className={styles.heroOverlay}></div>
+      <div className={styles.heroContent}>{children}</div>
     </div>
   );
 }

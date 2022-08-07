@@ -31,7 +31,7 @@ export const createStore = () => {
   });
 };
 
-const dummyStore = configureStore({
+export const dummyStore = configureStore({
   reducer: masterReducer,
 });
 

@@ -10,7 +10,7 @@ import EditMovieFormik from '../EditMovieFormik/EditMovieFormik';
 import { getYear } from '../../utils/getYearFromDate';
 import { joinGenres } from '../../utils/joinGenresWithComma';
 import { NextImageCustom } from '../NextImageCustom/NextImageCustom';
-// import './MovieListCard.scss';
+import styles from './MovieListCard.module.scss';
 
 
 interface MoviesListCardProps {
@@ -75,28 +75,28 @@ export function MoviesListCardComponent({ movie }: MoviesListCardProps) {
   ) : null;
 
   return (
-    <div className="movies-list-card">
+    <div className={styles.moviesListCard}>
       <NextImageCustom
-        className="movies-list-card-image"
+        className={styles.moviesListCardImage}
         alt={`${title} poster`}
         src={poster_path}
         width={300}
         height={500}
         onClick={handleMovieSelect}
       />
-      <div className="movies-list-card-header">
-        <span className="movies-list-card-title" onClick={handleMovieSelect}>
+      <div className={styles.moviesListCardHeader}>
+        <span className={styles.moviesListCardTitle} onClick={handleMovieSelect}>
           {title}
         </span>
-        <span className="movies-list-card-year">{getYear(release_date)}</span>
+        <span className={styles.moviesListCardYear}>{getYear(release_date)}</span>
       </div>
-      <div className="movies-list-card-genres">
+      <div className={styles.moviesListCardGenres}>
         <span>{joinGenres(genres)}</span>
       </div>
-      <button title="context-menu-button" onClick={() => setIsContextMenuOpen(true)} className="context-menu-btn">
+      <button title="context-menu-button" onClick={() => setIsContextMenuOpen(true)} className={styles.contextMenuBtn}>
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </button>
-      <div className="movies-list-card-dropdown-wrapper">
+      <div className={styles.moviesListCardDropdownWrapper}>
         {isContextMenuOpen && (
           <Dropdown
             items={dropdownItems}

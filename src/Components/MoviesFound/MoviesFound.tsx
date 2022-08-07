@@ -1,4 +1,4 @@
-// import './MoviesFound.scss';
+import styles from './MoviesFound.module.scss';
 
 interface MoviesFoundProps {
   numberOfMovies: number;
@@ -6,8 +6,8 @@ interface MoviesFoundProps {
 
 export function MoviesFound({ numberOfMovies }: MoviesFoundProps) {
   return (
-    <div className="movies-found">
-      <span className="movies-found-value">{numberOfMovies}</span> movies found
+    <div className={styles.moviesFound}>
+      <span className={styles.moviesFoundValue}>{numberOfMovies}</span> movies found
     </div>
   );
 }

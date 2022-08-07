@@ -1,0 +1,80 @@
+@import 'src/scss/variables';
+
+.moviesListCard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: left;
+  height: 100%;
+  max-width: 324px;
+
+  .moviesListCardImage {
+    flex-grow: 1;
+    margin-bottom: 22px !important;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .moviesListCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: rgba($color_white, 0.7);
+    margin-bottom: 8px;
+
+    .moviesListCardTitle {
+      cursor: pointer;
+    }
+
+    .moviesListCardYear {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: rgba($color_white, 0.7);
+      padding: 4px 8px;
+      border: 1px solid $color_matterhorn;
+      border-radius: 4px;
+    }
+  }
+
+
+  .moviesListCardGenres {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba($color_white, 0.5);
+  }
+
+  .contextMenuBtn {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    height: 36px;
+    width: 36px;
+    border-radius: 18px;
+    background-color: $color_blackcurrant;
+    color: $color_white;
+    border: none;
+
+    &:hover {
+      background-color: lighten($color_blackcurrant, 5%);
+    }
+  }
+
+  .moviesListCardDropdownWrapper {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+  }
+
+  &:hover {
+    .contextMenuBtn {
+      display: block;
+    }
+  }
+}

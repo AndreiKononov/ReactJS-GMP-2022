@@ -1,0 +1,19 @@
+@import 'src/scss/variables';
+
+$btn-color: rgba($color_zambezi, 0.68);
+
+.addMovieBtn {
+  width: 177px;
+  height: 46px;
+  font-size: 20px;
+  color: $color_wild_watermelon;
+  border-radius: 4px;
+  border: none;
+  background-color: $btn-color;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($btn-color, 5%);
+  }
+}

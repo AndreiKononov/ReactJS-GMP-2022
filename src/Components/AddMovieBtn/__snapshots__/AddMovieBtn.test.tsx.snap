@@ -3,7 +3,7 @@
 exports[`AddMovieBtn should match AddMovieBtn snapshot 1`] = `
 <DocumentFragment>
   <button
-    class="add-movie-btn"
+    class="addMovieBtn"
   >
     + Add Movie
   </button>

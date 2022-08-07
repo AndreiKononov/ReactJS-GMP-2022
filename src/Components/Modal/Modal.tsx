@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropsWithChildren, useEffect } from 'react';
-// import './Modal.scss';
+import styles from './Modal.module.scss';
 
 interface ModalConfig {
   title: string;
@@ -21,21 +21,21 @@ const Modal = ({ title, handleClose, children }: PropsWithChildren<ModalConfig>)
   }, []);
 
   const closeBtn = (
-    <button onClick={() => handleClose()} className="modal-close-btn">
+    <button onClick={handleClose} className={styles.modalCloseBtn}>
       <FontAwesomeIcon icon={faClose} />
     </button>
   );
 
   const modalLayout = (
-    <div className="modal-overlay">
-      <div className="modal">
+    <div className={styles.modalOverlay}>
+      <div className={styles.modal}>
         {closeBtn}
 
-        <div className="modal-header">
-          <span className="modal-header-title">{title}</span>
+        <div className={styles.modalHeader}>
+          <span className={styles.modalHeaderTitle}>{title}</span>
         </div>
 
-        <div className="modal-body">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );

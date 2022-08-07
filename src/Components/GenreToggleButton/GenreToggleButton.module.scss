@@ -1,0 +1,23 @@
+@import 'src/scss/variables';
+
+.genreButton {
+  color: $color_white;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 23px 0 19px 0;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  margin-right: 30px;
+
+  &.selected {
+    border-color: $color_wild_watermelon ;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

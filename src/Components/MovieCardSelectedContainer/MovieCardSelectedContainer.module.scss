@@ -1,0 +1,26 @@
+@import 'src/scss/variables';
+
+.movieCardSelectedContainer {
+  padding: 35px 60px 30px 60px;
+  background-color: $color_nero;
+  min-height: 500px;
+
+  .movieCardSelectedContainerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .movieCardSelectedSearchBtn {
+      background: transparent;
+      border: none;
+      color: $color_wild_watermelon;
+      font-size: 30px;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+        transition-duration: 0.1s;
+      }
+    }
+  }
+}

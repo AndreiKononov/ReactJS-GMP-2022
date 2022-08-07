@@ -1,0 +1,20 @@
+@import 'src/scss/variables';
+
+.confirmModal {
+  display: flex;
+  flex-direction: column;
+
+  .confirmText {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: $color_white;
+    padding-bottom: 52px;
+  }
+
+  .confirmBtn {
+    min-width: 180px;
+    width: 180px;
+    align-self: flex-end;
+  }
+}

@@ -1,4 +1,4 @@
-// import './GenreToggleButton.scss';
+import styles from './GenreToggleButton.module.scss';
 
 interface GenreButtonProps {
   genreTitle: string;
@@ -8,7 +8,7 @@ interface GenreButtonProps {
 
 export function GenreToggleButton({ isSelected, handleSelect, genreTitle }: GenreButtonProps) {
   return (
-    <button className={`genre-button ${isSelected ? 'selected' : ''}`} onClick={handleSelect}>
+    <button className={`${styles.genreButton} ${isSelected ? styles.selected : ''}`} onClick={handleSelect}>
       {genreTitle}
     </button>
   );

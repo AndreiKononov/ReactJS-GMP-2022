@@ -12,7 +12,9 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import { getMovieFromFormValue } from '../../utils/getMovieFromFormValue';
 import { AsyncSubmitStatus } from '../../models/AsyncSubmitStatus';
-// import './EditMovie.scss';
+import styles from './EditMovie.module.scss';
+import btnStyles from '../../scss/components/button.module.scss';
+import errorStyles from '../../scss/components/form-error.module.scss';
 
 interface EditMovieProps {
   movie: Movie | null;
@@ -59,10 +61,10 @@ const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
   return (
     <Formik initialValues={setInitialFormValue(movie)} validationSchema={validationSchema} onSubmit={handleFormSubmit}>
       {({ isSubmitting, status }: FormikProps<EditMovieFormValue>) => (
-        <Form className="edit-movie-form">
-          {status === AsyncSubmitStatus.SUBMIT_FAIL && <p className="form-error">Submit failed. Please try again.</p>}
+        <Form className={styles.editMovieForm}>
+          {status === AsyncSubmitStatus.SUBMIT_FAIL && <p className={errorStyles.formError}>Submit failed. Please try again.</p>}
 
-          <div className="form-fields">
+          <div className={styles.formFields}>
             <TextField name="title" id={getIdFor('title')} label="Title:" type="text" placeholder="Title" />
             <TextField name="release_date" id={getIdFor('release_date')} label="Release date:" type="date" placeholder="Select Date" />
             <TextField name="poster_path" id={getIdFor('poster_path')} label="Poster Url:" type="url" placeholder="https://" />
@@ -72,9 +74,13 @@ const EditMovieFormik = ({ movie, handleClose }: EditMovieProps) => {
             <TextField name="overview" id={getIdFor('overview')} label="Overview:" textarea type="text" placeholder="Movie description" />
           </div>
 
-          <div className="edit-movie-form-actions">
-            <button className="app-btn app-btn-reverse" type="reset">Reset</button>
-            <button className="app-btn" disabled={isSubmitting} type="submit">Submit</button>
+          <div className={styles.editMovieFormActions}>
+            <button className={`${btnStyles.appBtn} ${btnStyles.appBtnReverse}`} type="reset">
+              Reset
+            </button>
+            <button className={btnStyles.appBtn} disabled={isSubmitting} type="submit">
+              Submit
+            </button>
           </div>
         </Form>
       )}

@@ -2,7 +2,9 @@ import { useId } from 'react';
 import { Formik, Form } from 'formik';
 import { useRouter } from 'next/router';
 import { TextField } from '../TextField/TextField';
-// import './SearchForm.scss';
+import styles from './SearchForm.module.scss';
+import btnStyles from '../../scss/components/button.module.scss';
+import inputStyles from '../../scss/components/form-input.module.scss';
 
 export default function SearchForm() {
   const router = useRouter();
@@ -28,19 +30,19 @@ export default function SearchForm() {
   };
 
   return (
-    <div className="searchForm-wrapper">
-      <h1 className="searchForm-title">Find your movie</h1>
+    <div className={styles.searchFormWrapper}>
+      <h1 className={styles.searchFormTitle}>Find your movie</h1>
       <Formik initialValues={{ searchValue: (searchQuery as string) || '' }} onSubmit={handleSubmit}>
-        <Form className="searchForm">
+        <Form className={styles.searchForm}>
           <TextField
             name="searchValue"
-            className="form-input"
+            className={inputStyles.formInput}
             id={`${inputIdPrefix}_search-input`}
             label=""
             type="text"
             placeholder="What do you want to watch?"
           />
-          <button className="app-btn searchForm-btn" type="submit">
+          <button className={`${btnStyles.appBtn} ${styles.searchFormBtn}`} type="submit">
             Search
           </button>
         </Form>

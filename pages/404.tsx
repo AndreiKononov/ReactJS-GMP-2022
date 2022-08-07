@@ -1,12 +1,12 @@
 import Link from 'next/link';
-// import './PageNotFound.scss';
+import styles from '../src/components/PageNotFound/PageNotFound.module.scss'
 
 const PageNotFound = () => (
-  <div className="page-not-found">
-    <h1 className="title">Page not found</h1>
+  <div className={styles.pageNotFound}>
+    <h1 className={styles.title}>Page not found</h1>
     <p>
       <Link href="/">
-        <a className="link">Go to the home page</a>
+        <a className={styles.link}>Go to the home page</a>
       </Link>
     </p>
   </div>

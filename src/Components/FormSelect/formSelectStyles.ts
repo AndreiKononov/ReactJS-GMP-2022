@@ -32,7 +32,7 @@ export const formSelectStyles = {
     alignItems: 'center',
     width: '100%',
     minHeight: '56px',
-    backgroundColor: '#555555',
+    backgroundColor: 'rgba(85, 85, 85, 0.8)',
     borderRadius: '4px',
   }),
   valueContainer: (provided) => ({

@@ -1,0 +1,33 @@
+@import 'src/scss/variables';
+
+.searchFormWrapper {
+  width: 100%;
+  max-width: 790px;
+  margin-top: -35px;
+
+  .searchFormTitle {
+    text-align: left;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 49px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $color_white;
+    margin-bottom: 38px;
+  }
+
+  .searchForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      width: 100%;
+      margin-right: 14px;
+    }
+
+    .searchFormBtn {
+      min-width: 233px;
+    }
+  }
+}

@@ -3,10 +3,10 @@
 exports[`SearchForm should match SearchForm snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="searchForm-wrapper"
+    class="searchFormWrapper"
   >
     <h1
-      class="searchForm-title"
+      class="searchFormTitle"
     >
       Find your movie
     </h1>
@@ -14,11 +14,9 @@ exports[`SearchForm should match SearchForm snapshot 1`] = `
       action="#"
       class="searchForm"
     >
-      <div
-        class="form-field"
-      >
+      <div>
         <input
-          class="form-input"
+          class="formInput"
           id=":r0:_search-input"
           name="searchValue"
           placeholder="What do you want to watch?"
@@ -27,7 +25,7 @@ exports[`SearchForm should match SearchForm snapshot 1`] = `
         />
       </div>
       <button
-        class="app-btn searchForm-btn"
+        class="appBtn searchFormBtn"
         type="submit"
       >
         Search
